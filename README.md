@@ -1,4 +1,4 @@
-# MoTA Smart Scholarship Platform
+# ScholarCore India
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
@@ -16,7 +16,8 @@
 
 Currently, the evaluation of tribal scholarship applications involves massive bottlenecks due to manual scrutiny of physical or scanned documents. This leads to administrative delays, human error, and prolonged wait times for deserving students.
 
-The **MoTA Smart Scholarship Platform** is an AI-enabled portal designed to autonomously parse, evaluate, and track scholarship applications. By leveraging **Document Intelligence (Tesseract OCR & spaCy)** and a **Dynamic JSON Rule Engine**, the system extracts key metrics (like annual income and exam scores) directly from uploaded certificates. It then validates this data against configurable government schemes to instantly approve applications or flag anomalies for manual review—drastically reducing the bureaucratic backlog and ensuring rapid disbursement of funds.
+The **ScholarCore India** platform is an AI-enabled portal designed to autonomously parse, evaluate, and track scholarship applications. By leveraging **Document Intelligence (Tesseract OCR & spaCy)** and a **Dynamic JSON Rule Engine**, the system extracts key metrics (like annual income and exam scores) directly from uploaded certificates. It then validates this data against configurable government schemes to instantly approve applications or flag anomalies for manual review—drastically reducing the bureaucratic backlog and ensuring rapid disbursement of funds.
+
 
 ---
 
