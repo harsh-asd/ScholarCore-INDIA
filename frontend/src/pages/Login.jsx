@@ -21,6 +21,13 @@ const Login = () => {
   // If a role was passed in the URL, we lock the UI to that role
   const isLocked = !!urlRole;
 
+  const themeColors = {
+    STUDENT: { main: 'bg-[#1E5642]', hover: 'hover:bg-[#164332]', ring: 'focus:ring-[#1E5642]', text: 'text-[#1E5642]', border: 'border-[#1E5642]' },
+    INSTITUTE: { main: 'bg-[#C85237]', hover: 'hover:bg-[#A6422A]', ring: 'focus:ring-[#C85237]', text: 'text-[#C85237]', border: 'border-[#C85237]' },
+    ADMIN: { main: 'bg-[#3B4B61]', hover: 'hover:bg-[#2A3648]', ring: 'focus:ring-[#3B4B61]', text: 'text-[#3B4B61]', border: 'border-[#3B4B61]' }
+  };
+  const theme = themeColors[role] || themeColors.STUDENT;
+
   useEffect(() => {
     if (urlRole && ['STUDENT', 'INSTITUTE', 'ADMIN'].includes(urlRole)) {
       setRole(urlRole);
@@ -153,7 +160,7 @@ const Login = () => {
        <div className="max-w-md w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
          
          {/* Header */}
-         <div className="bg-[#1E5642] px-6 py-6 text-center relative">
+         <div className={`${theme.main} px-6 py-6 text-center relative transition-colors duration-300`}>
            <div className="absolute inset-0 bg-black opacity-10"></div>
            <div className="relative z-10 flex justify-center mb-3">
              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-4 border-[#164332]">
@@ -258,7 +265,7 @@ const Login = () => {
                 <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">Remember me securely</label>
              </div>
 
-             <button type="submit" className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-[#1E5642] hover:bg-[#164332] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5642] transition">
+             <button type="submit" className={`w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white ${theme.main} ${theme.hover} focus:outline-none focus:ring-2 focus:ring-offset-2 ${theme.ring} transition-colors duration-300`}>
                <Lock size={16} className="mr-2 opacity-80" /> Secure Login
              </button>
            </form>
@@ -295,7 +302,7 @@ const Login = () => {
          {showPinModal && (
            <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] px-4 backdrop-blur-sm">
              <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden animate-slide-up">
-               <div className="bg-[#1E5642] px-6 py-4 flex justify-between items-center">
+               <div className={`${theme.main} px-6 py-4 flex justify-between items-center transition-colors duration-300`}>
                  <h3 className="font-bold text-white flex items-center"><ShieldCheck size={20} className="mr-2" /> 2-Step Auth</h3>
                  <button onClick={() => setShowPinModal(false)} className="text-white hover:text-red-300 transition"><X size={20}/></button>
                </div>
@@ -320,7 +327,7 @@ const Login = () => {
                      placeholder="•••"
                    />
                    
-                   <button onClick={handlePinVerify} className="w-full bg-[#1E5642] hover:bg-[#164332] text-white font-bold py-3 px-4 rounded-lg shadow transition">
+                   <button onClick={handlePinVerify} className={`w-full ${theme.main} ${theme.hover} text-white font-bold py-3 px-4 rounded-lg shadow transition-colors duration-300`}>
                      Verify & Login
                    </button>
                  </div>
