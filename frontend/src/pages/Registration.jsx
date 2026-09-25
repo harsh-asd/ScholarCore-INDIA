@@ -17,6 +17,8 @@ const Registration = () => {
 
   // OTP State
   const [showOtpModal, setShowOtpModal] = useState(false);
+  const [showPinSetup, setShowPinSetup] = useState(false);
+  const [generatedOtr, setGeneratedOtr] = useState('');
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
   const [isDigilockerVerified, setIsDigilockerVerified] = useState(false);
@@ -165,11 +167,7 @@ const Registration = () => {
              <label className="block text-sm font-medium text-gray-700 mb-1">Create Password</label>
              <input required type="password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)]" />
            </div>
-           <div>
-             <label className="block text-sm font-bold text-gray-700 mb-1">Create 3-Digit Security PIN</label>
-             <input required type="password" maxLength="3" value={securityPin} onChange={e=>setSecurityPin(e.target.value.replace(/\D/g, ''))} placeholder="e.g. 123" className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)] font-mono text-center tracking-widest text-lg" />
-             <p className="text-xs text-gray-500 mt-1">This PIN will be required for 2-Step Authentication during login.</p>
-           </div>
+
            <button type="submit" className="w-full bg-[var(--color-mota-forest)] text-white font-bold py-3 rounded shadow hover:bg-opacity-90 transition mt-4">
              Register
            </button>
