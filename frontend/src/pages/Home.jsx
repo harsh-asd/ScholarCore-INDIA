@@ -134,22 +134,20 @@ const Home = () => {
 
       
       {/* Academic Year & Basic Functions (NSP Mirror) */}
-      <div className="bg-white py-8 border-b border-gray-100 shadow-sm relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between mb-8">
-            <div className="flex items-center space-x-4">
-              <span className="bg-red-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-sm uppercase tracking-wider animate-pulse border-2 border-red-200">
-                Live Now
-              </span>
-              <div>
-                <h2 className="text-2xl md:text-3xl font-extrabold text-blue-900 tracking-tight">
-                  Academic Year 2025-26
-                </h2>
-                <p className="text-sm font-semibold text-gray-500 mt-1">Portal is open for Fresh & Renewal Applications</p>
-              </div>
-            </div>
+      <div className="bg-white border-b border-gray-200 shadow-sm relative z-10 pb-6">
+        {/* Authentic NSP Blue Ribbon */}
+        <div className="bg-[#1a334d] text-white w-full py-2.5 mb-6 border-b-2 border-red-500 shadow-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4">
+             <span className="bg-red-600 text-white px-3 py-1 rounded text-[10px] font-extrabold uppercase tracking-widest animate-pulse shadow-sm">Live Now</span>
+             <h2 className="text-lg md:text-xl font-bold uppercase tracking-widest text-white text-center text-shadow">
+                Academic Year 2025-26
+             </h2>
+             <span className="hidden sm:inline-block text-gray-400 text-sm font-medium">|</span>
+             <span className="text-sm font-medium text-gray-300">Portal is open for Fresh & Renewal Applications</span>
           </div>
-          
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <button onClick={() => navigate('/register')} className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 group shadow-sm">
               <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
