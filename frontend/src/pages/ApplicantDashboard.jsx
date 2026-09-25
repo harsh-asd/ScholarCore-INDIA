@@ -28,23 +28,25 @@ const ApplicantDashboard = () => {
   const [eligibleSchemes, setEligibleSchemes] = useState([]);
   const [hasMatched, setHasMatched] = useState(false);
 
-  const checkEligibility = async () => {
-    try {
-      const res = await fetch('https://scholarcore-india.onrender.com/api/schemes/eligible', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ income: parseFloat(matchIncome), category: matchCategory })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setEligibleSchemes(data.eligible_schemes);
-      } else {
-        setEligibleSchemes([]);
-      }
-    } catch (err) {
-      // Simulation fallback
-      setEligibleSchemes([{ id: 1, name: "National Fellowship for ST", description: "Simulated match" }]);
+  const checkEligibility = () => {
+    const inc = parseFloat(matchIncome) || 0;
+    const schemes = [];
+
+    // Real MoTA Schemes Data
+    if (inc <= 250000) {
+      schemes.push({ id: 1, name: "Pre-Matric Scholarship for ST", description: "Financial assistance for ST students studying in classes IX and X. Income limit: ₹2.5 Lakh/annum." });
+      schemes.push({ id: 2, name: "Post-Matric Scholarship for ST", description: "Financial assistance for ST students studying at post-matriculation or post-secondary stage. Income limit: ₹2.5 Lakh/annum." });
     }
+    
+    if (inc <= 600000) {
+      schemes.push({ id: 3, name: "National Fellowship and Scholarship (Top Class)", description: "Financial assistance for ST students for pursuing higher studies in top-class institutions. Income limit: ₹6.0 Lakh/annum." });
+      schemes.push({ id: 4, name: "National Overseas Scholarship for ST", description: "Financial assistance to selected ST students for pursuing Master level courses and Ph.D abroad. Income limit: ₹6.0 Lakh/annum." });
+    }
+    
+    // Fellowship has no income limit, but is strictly merit-based
+    schemes.push({ id: 5, name: "National Fellowship for ST", description: "Fellowships provided to ST students to pursue higher studies such as M.Phil and Ph.D. No income ceiling." });
+
+    setEligibleSchemes(schemes);
     setHasMatched(true);
   };
 

@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 const SchemeSelection = () => {
   const navigate = useNavigate();
   const schemes = [
-    { id: 1, name: 'National Fellowship for ST', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '31-Oct-2026', guideline: 'https://tribal.nic.in/downloads/faqs/INSTRUCTIONS%20MANNUAL%20FOR%20FILLING%20%20NFST%20APPLICATION%20FORM.pdf' },
-    { id: 2, name: 'National Overseas Scholarship for ST', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '15-Nov-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/NOS/RevisedGuidelinesNOS07102022.pdf' },
-    { id: 3, name: 'Pre-Matric Scholarship for ST', ministry: 'Ministry of Tribal Affairs', status: 'Closed', closeDate: '30-Sep-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/pre-matric/EDUGuidelines.pdf' },
+    { id: 1, name: 'Pre-Matric Scholarship for ST Students', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '30-Oct-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/pre-matric/EDUGuidelines.pdf' },
+    { id: 2, name: 'Post-Matric Scholarship for ST Students', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '31-Oct-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/post-matric/EDUGuidelines.pdf' },
+    { id: 3, name: 'National Fellowship and Scholarship (Top Class)', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '15-Nov-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/top-class/EDUGuidelines.pdf' },
+    { id: 4, name: 'National Overseas Scholarship for ST Candidates', ministry: 'Ministry of Tribal Affairs', status: 'Open', closeDate: '30-Nov-2026', guideline: 'https://tribal.nic.in/downloads/guidelines/NOS/RevisedGuidelinesNOS07102022.pdf' },
+    { id: 5, name: 'National Fellowship for ST Students', ministry: 'Ministry of Tribal Affairs', status: 'Closed', closeDate: '30-Sep-2026', guideline: 'https://tribal.nic.in/downloads/faqs/INSTRUCTIONS%20MANNUAL%20FOR%20FILLING%20%20NFST%20APPLICATION%20FORM.pdf' }
   ];
 
   return (
