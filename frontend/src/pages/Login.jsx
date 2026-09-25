@@ -49,6 +49,12 @@ const Login = () => {
       return;
     }
 
+    // STUDENT EMAIL RESTRICTION
+    if (role === 'STUDENT' && !email.toLowerCase().endsWith('@gmail.com')) {
+      setError('Error: Student login is restricted to @gmail.com addresses only.');
+      return;
+    }
+
     // REAL STUDENT AUTHENTICATION via BACKEND
     try {
       const response = await fetch('https://scholarcore-india.onrender.com/api/auth/login', {

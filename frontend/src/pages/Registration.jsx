@@ -48,6 +48,10 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!email.toLowerCase().endsWith('@gmail.com')) {
+      alert('Error: Student registration is restricted to @gmail.com addresses only.');
+      return;
+    }
     try {
       const response = await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
         method: 'POST',
