@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, AlertCircle, CheckSquare, ChevronRight, Smartphone, X, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, AlertCircle, ChevronRight, Smartphone, X, CheckCircle2 } from 'lucide-react';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -15,13 +15,14 @@ const Registration = () => {
   const [password, setPassword] = useState('');
   const [securityPin, setSecurityPin] = useState('');
 
-  // OTP State
+  // Modals & KYC State
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [showPinSetup, setShowPinSetup] = useState(false);
   const [generatedOtr, setGeneratedOtr] = useState('');
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
   const [isDigilockerVerified, setIsDigilockerVerified] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDigilockerAuth = () => {
     setShowOtpModal(true);
@@ -33,7 +34,6 @@ const Registration = () => {
     if (otp === '123456') {
       setIsDigilockerVerified(true);
       setShowOtpModal(false);
-      // Auto-fill form to simulate DigiLocker payload
       setName('Aditi Sharma');
       setEmail('aditi.sharma@example.com');
       alert('DigiLocker KYC successful! Demographic details auto-filled.');
@@ -51,10 +51,14 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    
     if (!email.toLowerCase().endsWith('@gmail.com')) {
       alert('Error: Student registration is restricted to @gmail.com addresses only.');
       return;
     }
+    
+    setIsLoading(true);
+    
     try {
       const response = await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
         method: 'POST',
@@ -66,6 +70,7 @@ const Registration = () => {
       
       if (!response.ok) {
         alert(data.detail || 'Registration failed');
+        setIsLoading(false);
         return;
       }
       
@@ -74,15 +79,25 @@ const Registration = () => {
       localStorage.setItem('_sch_name', btoa(name));
       localStorage.setItem('_sch_email', btoa(email));
       localStorage.setItem('_sch_otr', btoa(otrId));
-      localStorage.setItem('_sch_pin', btoa(securityPin));
+      setGeneratedOtr(otrId);
       
-      // SHOW SUCCESS MESSAGE WITH OTR
-      alert(`Registration Successful!\n\nYour Unique OTR ID is: ${otrId}\n\nPlease keep this ID safe for all future scholarship applications.`);
+      setIsLoading(false);
+      setShowPinSetup(true); // SHOW PIN MODAL
       
-      navigate('/login?role=STUDENT');
-    } catch {
-      alert('Could not connect to the server.');
+    } catch (error) {
+      setIsLoading(false);
+      alert('Failed to connect to the server. Please try again.');
     }
+  };
+
+  const handlePinSetup = () => {
+    if (securityPin.length !== 3) {
+      alert('Error: Security PIN must be exactly 3 digits.');
+      return;
+    }
+    localStorage.setItem('_sch_pin', btoa(securityPin));
+    alert(`Registration Complete!\n\nYour Unique OTR ID is: ${generatedOtr}\n\nPlease keep this ID and your PIN safe for future logins.`);
+    navigate('/login?role=STUDENT');
   };
 
   if (!showForm) {
@@ -126,14 +141,14 @@ const Registration = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto py-16 px-6">
+    <div className="max-w-md mx-auto py-16 px-6 relative">
        <div className="bg-white shadow-xl rounded-lg p-8 border-t-4 border-[var(--color-mota-forest)]">
          <div className="flex flex-col items-center mb-6">
            <img src="/digilocker.png" alt="DigiLocker Logo" className="h-20 w-auto object-contain mb-4" />
            <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">OTR Generation</h2>
            <p className="text-sm text-gray-500 text-center mb-6">Authenticate via DigiLocker for instant KYC</p>
            
-                      {!isDigilockerVerified ? (
+           {!isDigilockerVerified ? (
              <button type="button" onClick={handleDigilockerAuth} className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition mb-6">
                <ShieldCheck size={20} className="mr-2" /> Authenticate with DigiLocker
              </button>
@@ -163,9 +178,8 @@ const Registration = () => {
              <label className="block text-sm font-medium text-gray-700 mb-1">Create Password</label>
              <input required type="password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)]" />
            </div>
-
-           <button type="submit" className="w-full bg-[var(--color-mota-forest)] text-white font-bold py-3 rounded shadow hover:bg-opacity-90 transition mt-4">
-             Register
+           <button type="submit" disabled={isLoading} className={`w-full text-white font-bold py-3 rounded shadow transition mt-4 ${isLoading ? 'bg-gray-400' : 'bg-[var(--color-mota-forest)] hover:bg-opacity-90'}`}>
+             {isLoading ? 'Processing...' : 'Register'}
            </button>
          </form>
        </div>
@@ -208,7 +222,7 @@ const Registration = () => {
                      maxLength="6"
                      value={otp}
                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                     className="w-full text-center tracking-[0.5em] font-mono text-xl border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none"
+                     className="w-full text-center tracking-[0.5em] font-mono text-xl border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-[#1E5642] outline-none"
                      placeholder="••••••"
                    />
                  </div>
@@ -216,10 +230,45 @@ const Registration = () => {
                  <button onClick={verifyOtp} className="w-full bg-[#1E5642] hover:bg-[#164332] text-white font-bold py-3 px-4 rounded-lg shadow transition flex justify-center items-center">
                    Verify & Link Account
                  </button>
+               </div>
+             </div>
+           </div>
+         </div>
+       )}
+
+       {/* Post-Registration PIN Setup Modal */}
+       {showPinSetup && (
+         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[9999] px-4">
+           <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden animate-slide-up">
+             <div className="bg-[#1E5642] px-4 py-4 text-center text-white">
+                <ShieldCheck size={32} className="mx-auto mb-2 text-green-300" />
+                <h3 className="font-bold text-lg">Registration Successful!</h3>
+             </div>
+             
+             <div className="p-6">
+               <div className="mb-4 text-center">
+                 <p className="text-sm text-gray-500 mb-1">Your Unique OTR ID is:</p>
+                 <div className="bg-green-50 text-green-800 font-mono font-bold text-lg py-2 px-4 rounded border border-green-200">
+                   {generatedOtr}
+                 </div>
+               </div>
+               
+               <div className="border-t border-gray-200 pt-4 mt-2">
+                 <h4 className="font-bold text-gray-800 mb-2">Set Up Security PIN</h4>
+                 <p className="text-xs text-gray-600 mb-4">Please create a 3-digit Security PIN. This will be required alongside your password for 2-Step Authentication during every login.</p>
                  
-                 <p className="text-center text-xs text-blue-600 font-semibold cursor-pointer hover:underline mt-4">
-                   Resend OTP (00:45)
-                 </p>
+                 <input 
+                   type="password" 
+                   maxLength="3"
+                   value={securityPin}
+                   onChange={e=>setSecurityPin(e.target.value.replace(/\D/g, ''))}
+                   className="w-full text-center tracking-[1em] font-mono text-2xl border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-[#1E5642] outline-none"
+                   placeholder="•••"
+                 />
+                 
+                 <button onClick={handlePinSetup} className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded shadow transition">
+                   Save PIN & Go to Login
+                 </button>
                </div>
              </div>
            </div>
@@ -229,7 +278,5 @@ const Registration = () => {
     </div>
   );
 };
-
-
 
 export default Registration;
