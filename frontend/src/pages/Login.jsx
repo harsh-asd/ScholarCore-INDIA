@@ -80,28 +80,31 @@ const Login = () => {
     }
 
     if (role === 'ADMIN') {
+      if (!email.toLowerCase().endsWith('@mota.gov.in')) {
+        setError('Access Denied. Only authorized @mota.gov.in accounts can access the Admin Portal.');
+        return;
+      }
       if (email.includes('ministry')) {
         localStorage.setItem('_sch_role', btoa('MINISTRY'));
-        setIsRouting(true); setTimeout(() => navigate('/admin'), 1500);
-      } else if (email.includes('officer') || email.includes('admin')) {
-        localStorage.setItem('_sch_role', btoa('OFFICER'));
-        setIsRouting(true); setTimeout(() => navigate('/admin'), 1500);
       } else {
-        setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
+        localStorage.setItem('_sch_role', btoa('OFFICER'));
       }
+      setIsRouting(true); 
+      setTimeout(() => navigate('/admin'), 1500);
       return;
     } 
     
     if (role === 'INSTITUTE') {
-      if (email.includes('ino') || email.includes('institute')) {
-        localStorage.setItem('_sch_role', btoa('INSTITUTE'));
-        setIsRouting(true); setTimeout(() => navigate('/institute'), 1500);
-      } else {
-        setError('Invalid Institute credentials. Use ino@institute.edu');
+      if (!email.toLowerCase().endsWith('@institute.edu')) {
+        setError('Access Denied. Institute portal is restricted to registered @institute.edu addresses.');
+        return;
       }
+      localStorage.setItem('_sch_role', btoa('INSTITUTE'));
+      setIsRouting(true); 
+      setTimeout(() => navigate('/institute'), 1500);
       return;
     }
-
+    
     // STUDENT EMAIL RESTRICTION
     if (role === 'STUDENT' && !email.toLowerCase().endsWith('@gmail.com')) {
       setError('Error: Student login is restricted to @gmail.com addresses only.');
