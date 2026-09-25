@@ -3,9 +3,16 @@ import { LayoutDashboard, FileText, UploadCloud, Activity, AlertTriangle, Buildi
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+
+  const safeDecode = (key, fallback) => {
+    const val = localStorage.getItem(key);
+    if (!val) return fallback;
+    try { return atob(val); } catch (e) { return val; }
+  };
+
   const location = useLocation();
   const navigate = useNavigate();
-  const userRole = localStorage.getItem('_sch_role') ? atob(localStorage.getItem('_sch_role')) : 'STUDENT';
+  const userRole = safeDecode('_sch_role', 'STUDENT');
   
   const applicantItems = [
     { name: 'Dashboard', path: '/applicant', icon: <LayoutDashboard size={18} /> },
