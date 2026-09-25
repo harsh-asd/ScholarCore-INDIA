@@ -48,8 +48,8 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    localStorage.setItem('studentName', name);
-    localStorage.setItem('studentEmail', email);
+    localStorage.setItem('_sch_name', btoa(name));
+    localStorage.setItem('_sch_email', btoa(email));
     try {
       await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
         method: 'POST',

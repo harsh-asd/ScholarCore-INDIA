@@ -30,23 +30,23 @@ const Login = () => {
     setTimeout(() => {
       if (role === 'ADMIN') {
         if (email.includes('ministry')) {
-          localStorage.setItem('userRole', 'MINISTRY');
+          localStorage.setItem('_sch_role', btoa('MINISTRY'));
           navigate('/admin');
         } else if (email.includes('officer') || email.includes('admin')) {
-          localStorage.setItem('userRole', 'OFFICER');
+          localStorage.setItem('_sch_role', btoa('OFFICER'));
           navigate('/admin');
         } else {
           setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
         }
       } else if (role === 'INSTITUTE') {
         if (email.includes('ino') || email.includes('institute')) {
-          localStorage.setItem('userRole', 'INSTITUTE');
+          localStorage.setItem('_sch_role', btoa('INSTITUTE'));
           navigate('/institute');
         } else {
           setError('Invalid Institute credentials. Use ino@institute.edu');
         }
       } else {
-        localStorage.setItem('userRole', 'STUDENT');
+        localStorage.setItem('_sch_role', btoa('STUDENT'));
         navigate('/applicant');
       }
     }, 600);

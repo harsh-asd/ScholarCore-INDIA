@@ -4,7 +4,7 @@ import { Users, FileText, CheckCircle, RefreshCcw, PlusCircle, TrendingUp, Award
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const AdminDashboard = () => {
-  const userRole = localStorage.getItem('userRole') || 'OFFICER'; // 'MINISTRY' or 'OFFICER'
+  const userRole = localStorage.getItem('_sch_role') ? atob(localStorage.getItem('_sch_role')) : 'OFFICER'; // 'MINISTRY' or 'OFFICER'
   const [activeTab, setActiveTab] = useState(userRole === 'MINISTRY' ? 'overview' : 'merit'); // overview, scheme, merit, forecast
   const [applications, setApplications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

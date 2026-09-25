@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const userRole = localStorage.getItem('userRole') || 'STUDENT';
+  const userRole = localStorage.getItem('_sch_role') ? atob(localStorage.getItem('_sch_role')) : 'STUDENT';
   
   const applicantItems = [
     { name: 'Dashboard', path: '/applicant', icon: <LayoutDashboard size={18} /> },
@@ -39,7 +39,7 @@ const Sidebar = () => {
   );
 
   const handleLogout = () => {
-    localStorage.removeItem('userRole');
+    localStorage.removeItem('_sch_role'); localStorage.removeItem('_sch_name');
     navigate('/');
   };
 
