@@ -182,7 +182,7 @@ const Home = () => {
               <ClipboardCheck size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Scholarship Eligibility</h3>
               <p className="text-sm text-gray-700 mb-4">Know your eligibility for different scholarship schemes available on the National Scholarship Portal.</p>
-              <button onClick={() => alert('Eligibility module opening...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">View</button>
+              <button onClick={() => navigate('/applicant/schemes')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">View</button>
             </div>
 
             {/* 6. Application Status */}
@@ -198,7 +198,7 @@ const Home = () => {
               <CreditCard size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Track Your Payment</h3>
               <p className="text-sm text-gray-700 mb-4">Track your scholarship disbursement status directly on the PFMS portal.</p>
-              <button onClick={() => alert('Redirecting to PFMS Portal...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Track Your Payment</button>
+              <button onClick={() => window.open('https://pfms.nic.in/', '_blank')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Track Your Payment</button>
             </div>
 
             {/* 8. Aadhaar Seva Kendra */}
@@ -206,7 +206,7 @@ const Home = () => {
               <MapPin size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Aadhaar Seva Kendra<br/><span className="text-sm font-normal text-gray-500">(Geo-visualization)</span></h3>
               <p className="text-sm text-gray-700 mb-4">Know the Aadhaar Seva Kendra nearest to your location.</p>
-              <button onClick={() => alert('Opening Geo-visualization map...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Aadhaar Seva Kendra</button>
+              <button onClick={() => window.open('https://bhuvan.nrsc.gov.in/aadhaar/', '_blank')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Aadhaar Seva Kendra</button>
             </div>
 
             {/* 9. Aadhaar Seeding */}
@@ -215,8 +215,8 @@ const Home = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Aadhaar Seeding</h3>
               <p className="text-sm text-gray-700 mb-4">Check your bank account seeding status with Aadhaar.</p>
               <div className="flex flex-col space-y-2 items-start">
-                <button onClick={() => alert('Checking NPCI mapper status...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Check Bank Account(Aadhaar Linked)</button>
-                <button onClick={() => alert('Showing Seeding Instructions...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">How to seed Aadhaar with Bank</button>
+                <button onClick={() => window.open('https://resident.uidai.gov.in/bank-mapper', '_blank')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Check Bank Account(Aadhaar Linked)</button>
+                <button onClick={() => window.open('https://uidai.gov.in/images/AadhaarSeedingInstructions.pdf', '_blank')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">How to seed Aadhaar with Bank</button>
               </div>
             </div>
 
@@ -225,7 +225,7 @@ const Home = () => {
               <UserPlus size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Check UDID details<br/><span className="text-sm font-normal text-gray-500">(For Disabled Applicants)</span></h3>
               <p className="text-sm text-gray-700 mb-4">Check UDID details at Swavlamban Portal</p>
-              <button onClick={() => alert('Redirecting to Swavlamban Portal...')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">UDID details</button>
+              <button onClick={() => window.open('https://www.swavlambancard.gov.in/', '_blank')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">UDID details</button>
             </div>
 
           </div>
@@ -250,9 +250,9 @@ const Home = () => {
               <ul className="space-y-3 list-disc pl-4 text-sm text-[#2F6955] mb-4 leading-relaxed">
                 <li>The Portal is open for Academic year 2026-27 from 1'st June 2026 onwards.</li>
                 <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026–27, as per scheme eligibility criteria.</li>
-                <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Head of Institutes (HoIs) and Institute Nodal Officers (INOs) are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => alert('Opening OTR FAQs...')} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
+                <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Head of Institutes (HoIs) and Institute Nodal Officers (INOs) are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => document.getElementById('faqs')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
               </ul>
-              <Link to="#" onClick={() => alert('Opening Announcements...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">View all</Link>
+              <Link to="#" onClick={() => document.getElementById('announcements')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#C85237]">View all</Link>
             </div>
 
             {/* 2. Registration Form */}
@@ -260,7 +260,7 @@ const Home = () => {
               <FileEdit size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Registration Form</h3>
               <p className="text-sm text-gray-700 mb-4">New Institutes (not on-boarded on NSP) having valid AISHE/UDISE+/NCVT code can register on NSP.</p>
-              <button onClick={() => alert('Redirecting to Registration...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Apply now!</button>
+              <button onClick={() => navigate('/register')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Apply now!</button>
             </div>
 
             {/* 3. Login */}
@@ -276,7 +276,7 @@ const Home = () => {
               <HelpCircle size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">How To Fill Registration Form</h3>
               <p className="text-sm text-gray-700 mb-4">To know how to fill registration form of institute</p>
-              <button onClick={() => alert('Opening user manual...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
+              <button onClick={() => window.open('https://scholarships.gov.in/public/faq/NSP_Inst_Manual.pdf', '_blank')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
             </div>
 
             {/* 5. Know your AISHE Code */}
@@ -284,7 +284,7 @@ const Home = () => {
               <Search size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Know your AISHE Code</h3>
               <p className="text-sm text-gray-700 mb-4">Find out the AISHE code of your institute</p>
-              <button onClick={() => alert('Redirecting to AISHE search...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
+              <button onClick={() => window.open('https://aishe.gov.in/aishe/aisheCode', '_blank')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
             </div>
 
             {/* 6. Get AISHE Code */}
@@ -292,7 +292,7 @@ const Home = () => {
               <PlusCircle size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Get AISHE Code</h3>
               <p className="text-sm text-gray-700 mb-4">Apply in the AISHE Portal to register your institute for AISHE code</p>
-              <button onClick={() => alert('Redirecting to AISHE registration...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Get AISHE code</button>
+              <button onClick={() => window.open('https://aishe.gov.in/', '_blank')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Get AISHE code</button>
             </div>
 
             {/* 7. UDISE+ Website */}
@@ -300,7 +300,7 @@ const Home = () => {
               <Globe size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">UDISE+ Website</h3>
               <p className="text-sm text-gray-700 mb-4">For registration of your institute in UDISE+</p>
-              <button onClick={() => alert('Redirecting to UDISE+...')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
+              <button onClick={() => window.open('https://udiseplus.gov.in/', '_blank')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Click here</button>
             </div>
 
           </div>
@@ -325,9 +325,9 @@ const Home = () => {
               <ul className="space-y-3 list-disc pl-4 text-sm text-[#2F6955] mb-4 leading-relaxed">
                 <li>The Portal is open for Academic year 2026-27 from 1'st June 2026 onwards.</li>
                 <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026–27, as per scheme eligibility criteria.</li>
-                <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Ministry/Department/Zone/State/District level Nodal Officers are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => alert('Opening OTR FAQs...')} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
+                <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Ministry/Department/Zone/State/District level Nodal Officers are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => document.getElementById('faqs')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
               </ul>
-              <Link to="#" onClick={() => alert('Opening Officer Announcements...')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">View all</Link>
+              <Link to="#" onClick={() => document.getElementById('announcements')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">View all</Link>
             </div>
 
             {/* 2. Nodal Officers */}
@@ -335,7 +335,7 @@ const Home = () => {
               <UserCog size={56} className="text-[#3B4B61] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Nodal Officers <span className="text-sm font-normal text-gray-500">(Scheme-wise)</span></h3>
               <p className="text-sm text-gray-700 mb-4">Find the list of Nodal Officers designated by the Ministries/Departments/ States/UTs for each scheme</p>
-              <button onClick={() => alert('Redirecting to Nodal Officer List...')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Find List</button>
+              <button onClick={() => window.open('https://scholarships.gov.in/public/nodalOfficerList', '_blank')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Find List</button>
             </div>
 
             {/* 3. Login */}
@@ -351,7 +351,7 @@ const Home = () => {
               <Scale size={56} className="text-[#3B4B61] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Grievance Redressal Officers <span className="text-sm font-normal text-gray-500">(Scheme-wise)</span></h3>
               <p className="text-sm text-gray-700 mb-4">Find the list of Grievance Redressal Officers(GROs) for Central Sector Schemes on NSP</p>
-              <button onClick={() => alert('Redirecting to GRO PDF List...')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Find List</button>
+              <button onClick={() => window.open('https://scholarships.gov.in/public/faq/GRO_List.pdf', '_blank')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Find List</button>
             </div>
 
           </div>
@@ -374,7 +374,7 @@ const Home = () => {
                 <BarChart3 size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Dashboard</h3>
                 <p className="text-sm text-gray-700 mb-4">Visualization of the statistical data available on NSP regarding the receipt and processing of scholarship applications in schemes onboarded on NSP.</p>
-                <button onClick={() => alert('Redirecting to Dashboard...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View all</button>
+                <button onClick={() => navigate('/admin/analytics')} className="text-black font-bold border-b border-black hover:text-[#187884]">View all</button>
              </div>
 
              {/* 2. Find Institutes on NSP */}
@@ -382,7 +382,7 @@ const Home = () => {
                 <Search size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Find Institutes on NSP</h3>
                 <p className="text-sm text-gray-700 mb-4">Search Institutes available on NSP</p>
-                <button onClick={() => alert('Opening Institute Search...')} className="text-black font-bold border-b border-black hover:text-[#187884]">Search now!</button>
+                <button onClick={() => window.open('https://scholarships.gov.in/public/findInstitute', '_blank')} className="text-black font-bold border-b border-black hover:text-[#187884]">Search now!</button>
              </div>
 
              {/* 3. Nodal Officers (Scheme-wise) */}
@@ -390,7 +390,7 @@ const Home = () => {
                 <UserCog size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Nodal Officers <span className="text-sm font-normal text-gray-500">(Scheme-wise)</span></h3>
                 <p className="text-sm text-gray-700 mb-4">Search Scheme-wise Nodal Officers</p>
-                <button onClick={() => alert('Redirecting to Scheme-wise Search...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => navigate('/applicant/schemes')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
              {/* 4. Nodal Officers (District-wise) */}
@@ -398,7 +398,7 @@ const Home = () => {
                 <MapPin size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Nodal Officers <span className="text-sm font-normal text-gray-500">(District-wise)</span></h3>
                 <p className="text-sm text-gray-700 mb-4">Search District-wise Nodal Officers (DNOs)</p>
-                <button onClick={() => alert('Redirecting to District-wise Search...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => window.open('https://scholarships.gov.in/public/nodalOfficerList', '_blank')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
              {/* 5. Grievance Registration */}
@@ -406,7 +406,7 @@ const Home = () => {
                 <ClipboardList size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Grievance Registration</h3>
                 <p className="text-sm text-gray-700 mb-4">Register Your Grievance or Check Status</p>
-                <button onClick={() => alert('Opening Grievance Portal...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => navigate('/applicant/grievances')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
              {/* 6. NSP Helpdesk */}
@@ -414,7 +414,7 @@ const Home = () => {
                 <Headset size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">NSP Helpdesk</h3>
                 <p className="text-sm text-gray-700 mb-4">NSP Helpdesk</p>
-                <button onClick={() => alert('Opening NSP Helpdesk Details...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => document.getElementById('helpdesk')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
              {/* 7. PFMS Helpdesk */}
@@ -422,7 +422,7 @@ const Home = () => {
                 <LifeBuoy size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">PFMS Helpdesk</h3>
                 <p className="text-sm text-gray-700 mb-4">PFMS Helpdesk</p>
-                <button onClick={() => alert('Opening PFMS Helpdesk Details...')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => document.getElementById('helpdesk')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
           </div>
@@ -445,7 +445,7 @@ const Home = () => {
                 <GraduationCap size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Candidate Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Fellowship Candidates</p>
-                <button onClick={() => alert('Opening Candidate Login...')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Candidate Login</button>
+                <button onClick={() => navigate('/login')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Candidate Login</button>
              </div>
 
              {/* 2. Institute Login */}
@@ -453,7 +453,7 @@ const Home = () => {
                 <Building2 size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Institute Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Fellowship Institutes</p>
-                <button onClick={() => alert('Opening Institute Login...')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Institute Login</button>
+                <button onClick={() => navigate('/institute')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Institute Login</button>
              </div>
 
              {/* 3. Ministry Login */}
@@ -461,7 +461,7 @@ const Home = () => {
                 <Landmark size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Ministry Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Ministry Officials handling fellowships</p>
-                <button onClick={() => alert('Opening Ministry Login...')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Ministry Login</button>
+                <button onClick={() => navigate('/admin')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Ministry Login</button>
              </div>
 
              {/* 4. Announcements */}
@@ -471,9 +471,9 @@ const Home = () => {
                 <ul className="space-y-3 list-disc pl-4 text-sm text-[#2F6955] mb-4 leading-relaxed">
                   <li>One Time Registration(OTR) is required to avail the fellowship.</li>
                   <li>OTR is a unique number allotted to the candidate and is applicable for entire academic career.</li>
-                  <li>OTR can be generated using the link: <a href="#" onClick={(e) => {e.preventDefault(); alert('Redirecting to OTR Application...')}} className="text-blue-600 hover:underline break-all">https://scholarships.gov.in/otrapplication/#/login-page</a></li>
+                  <li>OTR can be generated using the link: <a href="#" onClick={(e) => {e.preventDefault(); navigate('/register')}} className="text-blue-600 hover:underline break-all">https://scholarships.gov.in/otrapplication/#/login-page</a></li>
                 </ul>
-                <Link to="#" onClick={() => alert('Opening Fellowship Announcements...')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">View more</Link>
+                <Link to="#" onClick={() => document.getElementById('announcements')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#D49A36]">View more</Link>
              </div>
 
           </div>
