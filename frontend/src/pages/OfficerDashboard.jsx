@@ -54,7 +54,7 @@ const OfficerDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="flex flex-col h-full w-full">
       {/* Admin Header */}
       <header className="bg-[#1E5642] text-white py-4 px-6 shadow-md flex justify-between items-center">
         <div className="flex items-center space-x-3">
@@ -86,7 +86,7 @@ const OfficerDashboard = () => {
         </div>
       </header>
 
-      <main className="flex-1 max-w-[1400px] w-full mx-auto p-6 flex flex-col md:flex-row gap-6">
+      <main className="flex-1 w-full mx-auto py-6">
         
         {/* Sidebar */}
         
@@ -96,7 +96,7 @@ const OfficerDashboard = () => {
           
           {/* TAB: ANALYTICS */}
           {activeTab === 'ANALYTICS' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800">Executive Dashboard</h2>
@@ -168,7 +168,7 @@ const OfficerDashboard = () => {
 
           {/* TAB: DYNAMIC RULE ENGINE */}
           {activeTab === 'RULES' && userRole === 'MINISTRY' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800">Dynamic Rule Engine Configuration</h2>
                 <p className="text-gray-600 text-sm mt-1">Configure automated AI screening parameters scheme-wise instantly.</p>
@@ -218,7 +218,7 @@ const OfficerDashboard = () => {
 
           {/* TAB: VERIFICATION */}
           {activeTab === 'VERIFICATION' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800">Application Scrutiny Inbox</h2>
@@ -272,7 +272,7 @@ const OfficerDashboard = () => {
 
           {/* TAB: MERIT LIST GENERATION */}
           {activeTab === 'MERIT' && userRole === 'MINISTRY' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <div className="flex justify-between items-end">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-800">Merit List Generation & PFMS Push</h2>
@@ -353,7 +353,7 @@ const OfficerDashboard = () => {
 
           {/* TAB: AUDIT LOGS & APPEALS */}
           {activeTab === 'AUDIT' && (
-            <div className="space-y-6 animate-fade-in">
+            <div className="space-y-6">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800">System Audit Logs & Grievance Appeals</h2>
                 <p className="text-gray-600 text-sm mt-1">Immutable tracking of all system events and transparent resolution of student appeals.</p>
