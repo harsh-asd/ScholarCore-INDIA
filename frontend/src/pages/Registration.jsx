@@ -51,10 +51,6 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (securityPin.length !== 3) {
-      alert('Error: Security PIN must be exactly 3 digits.');
-      return;
-    }
     if (!email.toLowerCase().endsWith('@gmail.com')) {
       alert('Error: Student registration is restricted to @gmail.com addresses only.');
       return;
