@@ -48,17 +48,25 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    localStorage.setItem('_sch_name', btoa(name));
-    localStorage.setItem('_sch_email', btoa(email));
     try {
-      await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
+      const response = await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
       });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        alert(data.detail || 'Registration failed');
+        return;
+      }
+      
+      localStorage.setItem('_sch_name', btoa(name));
+      localStorage.setItem('_sch_email', btoa(email));
       navigate('/login?role=STUDENT');
     } catch {
-      navigate('/login?role=STUDENT');
+      alert('Could not connect to the server.');
     }
   };
 

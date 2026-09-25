@@ -26,30 +26,51 @@ const Login = () => {
     e.preventDefault();
     setError('');
 
-    // Simulate Network Request
-    setTimeout(() => {
-      if (role === 'ADMIN') {
-        if (email.includes('ministry')) {
-          localStorage.setItem('_sch_role', btoa('MINISTRY'));
-          navigate('/admin');
-        } else if (email.includes('officer') || email.includes('admin')) {
-          localStorage.setItem('_sch_role', btoa('OFFICER'));
-          navigate('/admin');
-        } else {
-          setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
-        }
-      } else if (role === 'INSTITUTE') {
-        if (email.includes('ino') || email.includes('institute')) {
-          localStorage.setItem('_sch_role', btoa('INSTITUTE'));
-          navigate('/institute');
-        } else {
-          setError('Invalid Institute credentials. Use ino@institute.edu');
-        }
+    if (role === 'ADMIN') {
+      if (email.includes('ministry')) {
+        localStorage.setItem('_sch_role', btoa('MINISTRY'));
+        navigate('/admin');
+      } else if (email.includes('officer') || email.includes('admin')) {
+        localStorage.setItem('_sch_role', btoa('OFFICER'));
+        navigate('/admin');
       } else {
-        localStorage.setItem('_sch_role', btoa('STUDENT'));
-        navigate('/applicant');
+        setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
       }
-    }, 600);
+      return;
+    } 
+    
+    if (role === 'INSTITUTE') {
+      if (email.includes('ino') || email.includes('institute')) {
+        localStorage.setItem('_sch_role', btoa('INSTITUTE'));
+        navigate('/institute');
+      } else {
+        setError('Invalid Institute credentials. Use ino@institute.edu');
+      }
+      return;
+    }
+
+    // REAL STUDENT AUTHENTICATION via BACKEND
+    try {
+      const response = await fetch('https://scholarcore-india.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        setError(data.detail || 'Invalid login. Please check your credentials.');
+        return;
+      }
+      
+      // Success
+      localStorage.setItem('_sch_role', btoa('STUDENT'));
+      localStorage.setItem('_sch_name', btoa(data.name));
+      navigate('/applicant');
+    } catch (err) {
+      setError('Could not connect to the database. Please try again.');
+    }
   };
 
   return (

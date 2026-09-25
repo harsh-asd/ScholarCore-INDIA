@@ -223,20 +223,28 @@ class LoginReq(BaseModel):
 
 @app.post("/api/auth/register")
 def register_user(req: RegisterReq, db: Session = Depends(get_db)):
+    existing_user = db.query(models.User).filter(models.User.email == req.email).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Error: This email is already registered to a student (1 email per student).")
     try:
         db_user = models.User(name=req.name, email=req.email)
         db.add(db_user)
         db.commit()
         return {"message": "User registered successfully"}
     except Exception as e:
-        return {"message": "User registered successfully (Fallback)", "error": str(e)}
+        raise HTTPException(status_code=500, detail="Database Error")
 
 @app.post("/api/auth/login")
 def login_user(req: LoginReq, db: Session = Depends(get_db)):
-    try:
-        user = db.query(models.User).filter(models.User.email == req.email).first()
+    # Bypasses for demo official roles
+    if "ministry" in req.email or "officer" in req.email or "institute" in req.email:
         token = jwt.encode({"sub": req.email, "exp": datetime.utcnow() + timedelta(hours=1)}, SECRET_KEY)
-        return {"access_token": token, "token_type": "bearer"}
-    except:
-        token = jwt.encode({"sub": req.email, "exp": datetime.utcnow() + timedelta(hours=1)}, SECRET_KEY)
-        return {"access_token": token, "token_type": "bearer"}
+        return {"access_token": token, "token_type": "bearer", "name": "Official"}
+        
+    user = db.query(models.User).filter(models.User.email == req.email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Student account not found. Please register first.")
+        
+    # In a real app we check passwords here. For hackathon we just check if email exists.
+    token = jwt.encode({"sub": req.email, "exp": datetime.utcnow() + timedelta(hours=1)}, SECRET_KEY)
+    return {"access_token": token, "token_type": "bearer", "name": user.name}
