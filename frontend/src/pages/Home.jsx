@@ -132,7 +132,57 @@ const Home = () => {
         </div>
       </div>
 
-      {activeView === 'default' && (
+      
+      {/* Academic Year & Basic Functions (NSP Mirror) */}
+      <div className="bg-white py-8 border-b border-gray-100 shadow-sm relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-8">
+            <div className="flex items-center space-x-4">
+              <span className="bg-red-600 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-sm uppercase tracking-wider animate-pulse border-2 border-red-200">
+                Live Now
+              </span>
+              <div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-blue-900 tracking-tight">
+                  Academic Year 2025-26
+                </h2>
+                <p className="text-sm font-semibold text-gray-500 mt-1">Portal is open for Fresh & Renewal Applications</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <button onClick={() => navigate('/register')} className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 group shadow-sm">
+              <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
+                <UserPlus size={32} />
+              </div>
+              <span className="text-sm md:text-base font-bold text-gray-800 text-center">New Registration</span>
+            </button>
+            
+            <button onClick={() => navigate('/login?role=STUDENT')} className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 group shadow-sm">
+              <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
+                <RefreshCcw size={32} />
+              </div>
+              <span className="text-sm md:text-base font-bold text-gray-800 text-center">Renewal Application</span>
+            </button>
+
+            <button onClick={() => navigate('/login?role=STUDENT')} className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 group shadow-sm">
+              <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
+                <Activity size={32} />
+              </div>
+              <span className="text-sm md:text-base font-bold text-gray-800 text-center">Track Status</span>
+            </button>
+
+            <button onClick={() => window.open('https://aishe.gov.in', '_blank')} className="flex flex-col items-center justify-center p-6 bg-gradient-to-b from-blue-50 to-white border border-blue-100 rounded-2xl hover:border-blue-300 hover:shadow-lg transition-all duration-300 group shadow-sm">
+              <div className="bg-white p-3 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-600 group-hover:text-white text-blue-600">
+                <Search size={32} />
+              </div>
+              <span className="text-sm md:text-base font-bold text-gray-800 text-center">Search Institute</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+        {activeView === 'default' && (
         <div className="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-16">
           {/* Left Column: Announcements */}
           <div>
