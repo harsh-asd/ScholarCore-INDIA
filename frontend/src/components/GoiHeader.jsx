@@ -49,9 +49,10 @@ const GoiHeader = () => {
                   </div>
                 </div>
                 <div className="leading-none">
-                  <h1 className="text-[38px] font-bold text-[#4a4a4a] tracking-tighter flex items-center">
-                    sci <span className="text-[11px] uppercase font-semibold tracking-wide text-[#666] ml-2 leading-tight text-left">national<br/>scholarcore<br/>portal</span>
-                  </h1>
+                  <h1 className="text-[32px] font-bold text-[#4a4a4a] tracking-tighter flex items-center">
+                      <img src="/scholarcore_logo.png" alt="ScholarCore Logo" className="h-16 w-16 rounded-xl object-contain mr-3" />
+                      <span className="text-[11px] uppercase font-semibold tracking-wide text-[#666] leading-tight text-left">national<br/>scholarcore<br/>portal</span>
+                    </h1>
                 </div>
               </div>
             </Link>
