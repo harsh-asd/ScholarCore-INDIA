@@ -95,7 +95,7 @@ const Registration = () => {
       alert('Error: Security PIN must be exactly 3 digits.');
       return;
     }
-    localStorage.setItem('_sch_pin', btoa(securityPin));
+    localStorage.setItem('_sch_pin_' + email, btoa(securityPin));
     alert(`Registration Complete!\n\nYour Unique OTR ID is: ${generatedOtr}\n\nPlease keep this ID and your PIN safe for future logins.`);
     navigate('/login?role=STUDENT');
   };

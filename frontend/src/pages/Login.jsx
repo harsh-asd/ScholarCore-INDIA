@@ -29,17 +29,17 @@ const Login = () => {
 
   const handlePinVerify = () => {
     // Check if account is locked
-    const lockoutTime = localStorage.getItem('_sch_lockout_time');
+    const lockoutTime = localStorage.getItem('_sch_lockout_time_' + email);
     if (lockoutTime && Date.now() < parseInt(lockoutTime) && securityPin !== '123') {
       setError('SECURITY ALERT: Account locked for 24 hours due to 3 failed attempts.');
       setSecurityPin('');
       return;
     }
 
-    const savedPin = localStorage.getItem('_sch_pin') ? atob(localStorage.getItem('_sch_pin')) : '123';
+    const savedPin = localStorage.getItem('_sch_pin_' + email) ? atob(localStorage.getItem('_sch_pin_' + email)) : '123';
     if (securityPin === savedPin || securityPin === '123') {
       // Success: Reset attempts
-      localStorage.removeItem('_sch_attempts');
+      localStorage.removeItem('_sch_attempts_' + email);
       setShowPinModal(false);
       setIsRouting(true);
       setTimeout(() => {
@@ -48,11 +48,11 @@ const Login = () => {
       }, 1800);
     } else {
       // Failure: Track attempts
-      let attempts = parseInt(localStorage.getItem('_sch_attempts') || '0') + 1;
-      localStorage.setItem('_sch_attempts', attempts);
+      let attempts = parseInt(localStorage.getItem('_sch_attempts_' + email) || '0') + 1;
+      localStorage.setItem('_sch_attempts_' + email, attempts);
       
       if (attempts >= 3) {
-        localStorage.setItem('_sch_lockout_time', Date.now() + (24 * 60 * 60 * 1000)); // Lock for 24h
+        localStorage.setItem('_sch_lockout_time_' + email, Date.now() + (24 * 60 * 60 * 1000)); // Lock for 24h
         setError('SECURITY ALERT: Account locked for 24 hours due to 3 failed attempts.');
       } else {
         setError(`Invalid Security PIN. Access Denied. (${3 - attempts} attempts remaining)`);
@@ -66,11 +66,11 @@ const Login = () => {
     setError('');
     
     // Check if account is locked globally
-    const lockoutTime = localStorage.getItem('_sch_lockout_time');
+    const lockoutTime = localStorage.getItem('_sch_lockout_time_' + email);
     if (lockoutTime && Date.now() < parseInt(lockoutTime)) {
       // DEV OVERRIDE: Clear lockout automatically if they hit login again during a demo
-      localStorage.removeItem('_sch_lockout_time');
-      localStorage.removeItem('_sch_attempts');
+      localStorage.removeItem('_sch_lockout_time_' + email);
+      localStorage.removeItem('_sch_attempts_' + email);
       // We will allow them through for the demo
     }
 
@@ -119,10 +119,10 @@ const Login = () => {
       const data = await response.json();
       
       if (!response.ok) {
-        let attempts = parseInt(localStorage.getItem('_sch_attempts') || '0') + 1;
-        localStorage.setItem('_sch_attempts', attempts);
+        let attempts = parseInt(localStorage.getItem('_sch_attempts_' + email) || '0') + 1;
+        localStorage.setItem('_sch_attempts_' + email, attempts);
         if (attempts >= 3) {
-          localStorage.setItem('_sch_lockout_time', Date.now() + (24 * 60 * 60 * 1000));
+          localStorage.setItem('_sch_lockout_time_' + email, Date.now() + (24 * 60 * 60 * 1000));
           setError('SECURITY ALERT: Account locked for 24 hours due to 3 failed attempts.');
         } else {
           setError(`${data.detail || 'Invalid login.'} (${3 - attempts} attempts remaining)`);
