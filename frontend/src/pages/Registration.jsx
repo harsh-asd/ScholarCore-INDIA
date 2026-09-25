@@ -66,8 +66,15 @@ const Registration = () => {
         return;
       }
       
+      // GENERATE UNIQUE OTR ID
+      const otrId = `OTR-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
       localStorage.setItem('_sch_name', btoa(name));
       localStorage.setItem('_sch_email', btoa(email));
+      localStorage.setItem('_sch_otr', btoa(otrId));
+      
+      // SHOW SUCCESS MESSAGE WITH OTR
+      alert(`Registration Successful!\n\nYour Unique OTR ID is: ${otrId}\n\nPlease keep this ID safe for all future scholarship applications.`);
+      
       navigate('/login?role=STUDENT');
     } catch {
       alert('Could not connect to the server.');

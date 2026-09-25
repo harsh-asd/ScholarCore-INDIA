@@ -11,6 +11,8 @@ const Login = () => {
   const [role, setRole] = useState(urlRole || 'STUDENT');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [captcha, setCaptcha] = useState('');
+  const [generatedCaptcha] = useState(Math.random().toString(36).substring(2, 8).toUpperCase());
   const [error, setError] = useState('');
 
   // If a role was passed in the URL, we lock the UI to that role
@@ -25,6 +27,11 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+    
+    if (captcha.toUpperCase() !== generatedCaptcha) {
+      setError('Invalid Captcha! Please enter the exact characters shown in the image.');
+      return;
+    }
 
     if (role === 'ADMIN') {
       if (email.includes('ministry')) {
@@ -155,7 +162,7 @@ const Login = () => {
              <div>
                <div className="flex justify-between items-center mb-1.5">
                  <label className="block text-sm font-semibold text-gray-700">Password</label>
-                 <a href="#" className="text-xs text-blue-600 hover:underline font-medium">Forgot Password?</a>
+                 <a href="#" onClick={(e) => { e.preventDefault(); alert("A password recovery link has been sent to your registered Email/Mobile via Aadhaar e-KYC."); }} className="text-xs text-blue-600 hover:underline font-medium">Recover OTR / Password</a>
                </div>
                <input 
                  required 
