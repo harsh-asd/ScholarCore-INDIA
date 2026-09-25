@@ -82,7 +82,7 @@ const GoiHeader = () => {
       {isMenuOpen && (
         <div className="fixed inset-0 z-50 flex">
           {/* Backdrop */}
-          <div className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" onClick={() => setIsMenuOpen(false)}></div>
+          <div className="fixed inset-0 bg-transparent" onClick={() => setIsMenuOpen(false)}></div>
           
           {/* Drawer */}
           <div className="relative w-80 max-w-sm bg-white h-full shadow-2xl flex flex-col animate-slide-right overflow-y-auto custom-scrollbar">
