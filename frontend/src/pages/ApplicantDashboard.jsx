@@ -255,7 +255,7 @@ const ApplicantDashboard = () => {
             </div>
             <button 
               className={`px-4 py-2 rounded text-white text-sm font-medium transition-colors ${status === 'LOADING' ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
-              onClick={(e) => { e.stopPropagation(); handleUpload(); }}
+              onClick={(e) => { e.stopPropagation(); setShowESign(true); }}
               disabled={status === 'LOADING'}
             >
               {status === 'LOADING' ? 'Scrutinizing...' : 'Submit for Verification'}
@@ -263,6 +263,69 @@ const ApplicantDashboard = () => {
           </div>
         )}
       </div>
+
+
+      {/* Aadhaar E-Sign Statutory Modal */}
+      {showESign && (
+        <div className="fixed inset-0 bg-black/60 z-[9999] flex justify-center items-center">
+          <div className="bg-white rounded-lg shadow-2xl w-[550px] max-w-full overflow-hidden flex flex-col animate-slide-up">
+            <div className="bg-[#1E5642] px-6 py-4 flex justify-between items-center">
+              <div className="flex items-center space-x-3 text-white">
+                <img src="/ashoka_emblem.png" alt="Emblem" className="h-8 brightness-0 invert" />
+                <h3 className="font-bold text-lg">Aadhaar E-Sign Gateway</h3>
+              </div>
+              <button onClick={() => {setShowESign(false); setESignStep(0);}} className="text-white hover:text-red-300 transition">
+                <XCircle size={24} />
+              </button>
+            </div>
+            
+            <div className="p-6">
+              {eSignStep === 0 && (
+                <div className="space-y-4">
+                  <div className="bg-blue-50 border border-blue-200 p-4 rounded text-sm text-blue-900">
+                    <strong>Statutory Declaration:</strong> By proceeding, you consent to digitally signing your application and uploaded documents via UIDAI Aadhaar e-Sign. This eliminates the need for physical notarized affidavits.
+                  </div>
+                  <div className="flex items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded bg-gray-50">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Aadhaar_Logo.svg/1200px-Aadhaar_Logo.svg.png" alt="Aadhaar" className="h-16 opacity-80" />
+                  </div>
+                  <button onClick={() => setESignStep(1)} className="w-full bg-[#1E5642] text-white py-3 rounded font-bold hover:bg-[#153e2f] transition flex items-center justify-center">
+                    Proceed to e-Sign
+                  </button>
+                </div>
+              )}
+              
+              {eSignStep === 1 && (
+                <div className="space-y-4 text-center py-8">
+                  <div className="relative flex justify-center items-center w-24 h-24 mx-auto">
+                    <div className="absolute inset-0 border-4 border-gray-200 border-t-[#C85237] border-b-[#1E5642] rounded-full animate-spin"></div>
+                    <img src="/ashoka_emblem.png" alt="Loading" className="h-12 relative z-10 animate-pulse" />
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-lg mt-4">Authenticating with UIDAI...</h3>
+                  <p className="text-sm text-gray-500">Please do not close this window.</p>
+                  {setTimeout(() => setESignStep(2), 2000) && ""}
+                </div>
+              )}
+              
+              {eSignStep === 2 && (
+                <div className="space-y-4 text-center py-6">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4">
+                    <CheckCircle size={48} />
+                  </div>
+                  <h3 className="font-bold text-gray-800 text-lg">Document Digitally Signed</h3>
+                  <p className="text-sm text-gray-500 mb-6">Your Aadhaar e-Sign has been successfully affixed. The document is now legally binding.</p>
+                  <button onClick={() => {
+                    setShowESign(false);
+                    setESignStep(0);
+                    handleUpload();
+                  }} className="w-full bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-700 transition">
+                    Submit to AI Verification Engine
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

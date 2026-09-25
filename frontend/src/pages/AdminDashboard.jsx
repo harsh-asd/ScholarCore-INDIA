@@ -98,8 +98,8 @@ const AdminDashboard = () => {
                   <Sliders size={18} /><span>Dynamic Rule Engine</span>
                 </button>
               )}
-              <button className="flex items-center space-x-3 p-4 text-sm font-medium text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
-                <Users size={18} /><span>Institute Management</span>
+              <button onClick={() => setActiveTab('AUDIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'AUDIT' ? 'bg-[var(--color-mota-forest)] text-white border-l-4 border-green-800' : 'text-gray-600 hover:bg-gray-50'}`}>
+                <FileText size={18} /><span>Audit Logs & Appeals</span>
               </button>
               <button onClick={() => setActiveTab('MERIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'MERIT' ? 'bg-[var(--color-mota-terracotta)] text-white border-l-4 border-orange-800' : 'text-gray-600 hover:bg-gray-50'}`}>
                 <FileText size={18} /><span>Merit List Generation</span>
@@ -363,6 +363,86 @@ const AdminDashboard = () => {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          )}
+
+
+          {/* TAB: AUDIT LOGS & APPEALS */}
+          {activeTab === 'AUDIT' && (
+            <div className="space-y-6 animate-fade-in">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-800">System Audit Logs & Grievance Appeals</h2>
+                <p className="text-gray-600 text-sm mt-1">Immutable tracking of all system events and transparent resolution of student appeals.</p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                {/* Audit Logs */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                  <div className="bg-gray-50 p-4 border-b border-gray-200">
+                    <h3 className="font-bold text-gray-800 flex items-center"><Activity size={18} className="mr-2 text-blue-600"/> Immutable Audit Trail</h3>
+                  </div>
+                  <div className="p-0 overflow-y-auto max-h-96">
+                    <ul className="divide-y divide-gray-100">
+                      <li className="p-4 hover:bg-gray-50">
+                        <div className="flex justify-between">
+                          <p className="text-sm font-bold text-gray-800">Rule Engine Parameters Updated</p>
+                          <span className="text-xs text-gray-500">Just now</span>
+                        </div>
+                        <p className="text-xs text-gray-600 mt-1">Action by: Hon. Secretary (MOTA-ADM-09) | IP: 192.168.1.1</p>
+                      </li>
+                      <li className="p-4 hover:bg-gray-50">
+                        <div className="flex justify-between">
+                          <p className="text-sm font-bold text-gray-800">Aadhaar E-Sign Affixed</p>
+                          <span className="text-xs text-gray-500">2 mins ago</span>
+                        </div>
+                        <p className="text-xs text-gray-600 mt-1">Applicant: MOTA-2026-4829 (Aditi Sharma) | Hash: 0x9a8f...3e21</p>
+                      </li>
+                      <li className="p-4 hover:bg-gray-50">
+                        <div className="flex justify-between">
+                          <p className="text-sm font-bold text-gray-800">Application Flagged by OCR</p>
+                          <span className="text-xs text-gray-500">15 mins ago</span>
+                        </div>
+                        <p className="text-xs text-gray-600 mt-1">System Engine: Income mismatch detected for MOTA-2026-9012.</p>
+                      </li>
+                      <li className="p-4 hover:bg-gray-50">
+                        <div className="flex justify-between">
+                          <p className="text-sm font-bold text-gray-800">Funds Disbursed to PFMS</p>
+                          <span className="text-xs text-gray-500">1 hour ago</span>
+                        </div>
+                        <p className="text-xs text-gray-600 mt-1">Batch ID: BATCH-8921 | Amount: ₹4.2 Cr | Status: SUCCESS</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Grievance Desk */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                  <div className="bg-gray-50 p-4 border-b border-gray-200">
+                    <h3 className="font-bold text-gray-800 flex items-center"><AlertTriangle size={18} className="mr-2 text-red-600"/> Ministry Grievance Desk</h3>
+                  </div>
+                  <div className="p-4 space-y-4 max-h-96 overflow-y-auto">
+                    <div className="border border-red-200 bg-red-50 p-4 rounded text-sm">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-bold text-red-900">TKT-82910: Document Rejection Appeal</span>
+                        <span className="px-2 py-0.5 bg-red-200 text-red-800 text-[10px] font-bold rounded uppercase">High Priority</span>
+                      </div>
+                      <p className="text-gray-700 mb-3">"My income certificate was rejected by OCR but it is fully valid. I have attached the physical copy signed by the Tehsildar."</p>
+                      <button className="bg-white border border-red-300 text-red-700 px-3 py-1.5 rounded font-bold text-xs hover:bg-red-100 transition">Review Attached Affidavit</button>
+                    </div>
+                    
+                    <div className="border border-orange-200 bg-orange-50 p-4 rounded text-sm">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-bold text-orange-900">TKT-82905: PFMS Credit Delay</span>
+                        <span className="px-2 py-0.5 bg-orange-200 text-orange-800 text-[10px] font-bold rounded uppercase">Pending</span>
+                      </div>
+                      <p className="text-gray-700 mb-3">"Amount was sanctioned on dashboard but bank account shows no credit. Aadhaar seeding is complete."</p>
+                      <button className="bg-white border border-orange-300 text-orange-700 px-3 py-1.5 rounded font-bold text-xs hover:bg-orange-100 transition">Check NPCI Mapper</button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           )}
