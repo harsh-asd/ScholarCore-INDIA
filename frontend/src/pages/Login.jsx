@@ -12,6 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [captcha, setCaptcha] = useState('');
+  const [showPinModal, setShowPinModal] = useState(false);
+  const [securityPin, setSecurityPin] = useState('');
   const [generatedCaptcha] = useState(Math.random().toString(36).substring(2, 8).toUpperCase());
   const [error, setError] = useState('');
 
@@ -23,6 +25,17 @@ const Login = () => {
       setRole(urlRole);
     }
   }, [urlRole]);
+
+  const handlePinVerify = () => {
+    const savedPin = localStorage.getItem('_sch_pin') ? atob(localStorage.getItem('_sch_pin')) : '123';
+    if (securityPin === savedPin) {
+      setShowPinModal(false);
+      navigate('/applicant');
+    } else {
+      setError('Invalid Security PIN. Access Denied.');
+      setSecurityPin('');
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -80,7 +93,7 @@ const Login = () => {
       // Success
       localStorage.setItem('_sch_role', btoa('STUDENT'));
       localStorage.setItem('_sch_name', btoa(data.name));
-      navigate('/applicant');
+      setShowPinModal(true); // Trigger Step 2 Verification
     } catch (err) {
       setError('Could not connect to the database. Please try again.');
     }

@@ -13,6 +13,7 @@ const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [securityPin, setSecurityPin] = useState('');
 
   // OTP State
   const [showOtpModal, setShowOtpModal] = useState(false);
@@ -48,6 +49,10 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (securityPin.length !== 3) {
+      alert('Error: Security PIN must be exactly 3 digits.');
+      return;
+    }
     if (!email.toLowerCase().endsWith('@gmail.com')) {
       alert('Error: Student registration is restricted to @gmail.com addresses only.');
       return;
@@ -71,6 +76,7 @@ const Registration = () => {
       localStorage.setItem('_sch_name', btoa(name));
       localStorage.setItem('_sch_email', btoa(email));
       localStorage.setItem('_sch_otr', btoa(otrId));
+      localStorage.setItem('_sch_pin', btoa(securityPin));
       
       // SHOW SUCCESS MESSAGE WITH OTR
       alert(`Registration Successful!\n\nYour Unique OTR ID is: ${otrId}\n\nPlease keep this ID safe for all future scholarship applications.`);
