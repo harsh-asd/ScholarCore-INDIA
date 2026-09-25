@@ -444,7 +444,7 @@ const Home = () => {
               <LogIn size={56} className="text-[#3B4B61] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Login</h3>
               <p className="text-sm text-gray-700 mb-4">Nodal officers can login using their USER ID and PASSWORD</p>
-              <button onClick={() => navigate('/admin/analytics')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Login</button>
+              <button onClick={() => navigate('/login?role=ADMIN')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Login</button>
             </div>
 
             {/* 4. Grievance Redressal Officers */}
@@ -475,7 +475,7 @@ const Home = () => {
                 <BarChart3 size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Dashboard</h3>
                 <p className="text-sm text-gray-700 mb-4">Visualization of the statistical data available on ScholarCore regarding the receipt and processing of scholarship applications in schemes onboarded on ScholarCore.</p>
-                <button onClick={() => navigate('/admin/analytics')} className="text-black font-bold border-b border-black hover:text-[#187884]">View all</button>
+                <button onClick={() => navigate('/login?role=ADMIN')} className="text-black font-bold border-b border-black hover:text-[#187884]">View all</button>
              </div>
 
              {/* 2. Find Institutes on ScholarCore */}
