@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-mota-terracotta: #cc4b37;
-  --color-mota-forest: #1b4d3e;
-  --color-mota-ochre: #c48a31;
+  --color-mota-terracotta: #FF7A00; /* Vibrant Orange */
+  --color-mota-forest: #008751; /* Vibrant Indian Green */
+  --color-mota-ochre: #2563EB; /* Bright Royal Blue */
 }
 
 .bg-textile-pattern {
