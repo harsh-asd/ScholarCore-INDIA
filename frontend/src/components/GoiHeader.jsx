@@ -28,6 +28,11 @@ const GoiHeader = () => {
     }, 1500); // Show Ashoka loader for 1.5s
   };
 
+  const handleExternalLink = (serviceName) => {
+    setIsMenuOpen(false);
+    alert(`Redirecting to secure gateway for:\n${serviceName}\n\n(Note: This external integration is simulated for the hackathon demo)`);
+  };
+
   return (
     <>
       <div className="bg-white w-full border-b border-gray-200 shadow-sm relative pt-4 pb-2">
@@ -110,21 +115,21 @@ const GoiHeader = () => {
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
                   <li onClick={() => handleNavigation('/register')} className="cursor-pointer hover:text-blue-600">Apply For One Time Registration (OTR)</li>
                   <li onClick={() => handleNavigation('/login?role=STUDENT')} className="cursor-pointer hover:text-blue-600">Apply For Scholarship</li>
-                  <li className="cursor-pointer hover:text-blue-600">Schemes on ScholarCore</li>
-                  <li className="cursor-pointer hover:text-blue-600">Scholarship Eligibility</li>
-                  <li className="cursor-pointer hover:text-blue-600">Application Status</li>
-                  <li className="cursor-pointer hover:text-blue-600">Track Your Payment</li>
-                  <li className="cursor-pointer hover:text-blue-600">Aadhaar Seva Kendra</li>
-                  <li className="cursor-pointer hover:text-blue-600">Check Aadhaar Seeding Status</li>
-                  <li className="cursor-pointer hover:opacity-80 mt-2">
+                  <li onClick={() => handleExternalLink('Schemes Repository')} className="cursor-pointer hover:text-blue-600">Schemes on ScholarCore</li>
+                  <li onClick={() => handleExternalLink('Eligibility Calculator')} className="cursor-pointer hover:text-blue-600">Scholarship Eligibility</li>
+                  <li onClick={() => handleExternalLink('Application Status Tracker')} className="cursor-pointer hover:text-blue-600">Application Status</li>
+                  <li onClick={() => handleExternalLink('PFMS Payment Gateway')} className="cursor-pointer hover:text-blue-600">Track Your Payment</li>
+                  <li onClick={() => handleExternalLink('UIDAI Seva Kendra Locator')} className="cursor-pointer hover:text-blue-600">Aadhaar Seva Kendra</li>
+                  <li onClick={() => handleExternalLink('NPCI Aadhaar Seeding Mapper')} className="cursor-pointer hover:text-blue-600">Check Aadhaar Seeding Status</li>
+                  <li onClick={() => handleExternalLink('Google Play Store')} className="cursor-pointer hover:opacity-80 mt-2">
                     <div className="flex items-center text-[#f06d86] font-bold text-sm mb-1">ScholarCore OTR APP</div>
                     <div className="bg-black text-white text-xs flex items-center w-max px-3 py-1.5 rounded">
                       <Play size={14} className="mr-2 text-green-400 fill-current" /> 
                       <div><div className="text-[8px] uppercase">Get it on</div><div className="font-bold text-sm">Google Play</div></div>
                     </div>
                   </li>
-                  <li className="cursor-pointer hover:text-blue-600 mt-2">Check UDID details</li>
-                  <li className="cursor-pointer hover:text-blue-600">How to seed Aadhaar with the Bank Account</li>
+                  <li onClick={() => handleExternalLink('Swavlamban UDID Portal')} className="cursor-pointer hover:text-blue-600 mt-2">Check UDID details</li>
+                  <li onClick={() => handleExternalLink('DBT Seeding Guidelines PDF')} className="cursor-pointer hover:text-blue-600">How to seed Aadhaar with the Bank Account</li>
                 </ul>
               </div>
 
@@ -136,12 +141,12 @@ const GoiHeader = () => {
                   <Building2 size={22} className="mr-3" /> Institutes
                 </div>
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
-                  <li className="cursor-pointer hover:text-blue-600">How to fill Registration Form</li>
-                  <li className="cursor-pointer hover:text-blue-600">Registration Form</li>
+                  <li onClick={() => handleExternalLink('Institute Registration Manual PDF')} className="cursor-pointer hover:text-blue-600">How to fill Registration Form</li>
+                  <li onClick={() => handleNavigation('/register')} className="cursor-pointer hover:text-blue-600">Registration Form</li>
                   <li onClick={() => handleNavigation('/login?role=INSTITUTE')} className="cursor-pointer hover:text-blue-600">Login</li>
-                  <li className="cursor-pointer hover:text-blue-600">Know your AISHE Code</li>
-                  <li className="cursor-pointer hover:text-blue-600">Get AISHE code</li>
-                  <li className="cursor-pointer hover:text-blue-600">UDISE+ website details</li>
+                  <li onClick={() => handleExternalLink('AISHE Database Search')} className="cursor-pointer hover:text-blue-600">Know your AISHE Code</li>
+                  <li onClick={() => handleExternalLink('AISHE Code Generation')} className="cursor-pointer hover:text-blue-600">Get AISHE code</li>
+                  <li onClick={() => handleExternalLink('UDISE+ Verification Portal')} className="cursor-pointer hover:text-blue-600">UDISE+ website details</li>
                 </ul>
               </div>
 
@@ -154,8 +159,8 @@ const GoiHeader = () => {
                 </div>
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
                   <li onClick={() => handleNavigation('/login?role=ADMIN')} className="cursor-pointer hover:text-blue-600">Login</li>
-                  <li className="cursor-pointer hover:text-blue-600">Nodal Officers (Scheme-wise)</li>
-                  <li className="cursor-pointer hover:text-blue-600">Grievance Redressal Officers (GROs)</li>
+                  <li onClick={() => handleExternalLink('Nodal Officer Global Directory')} className="cursor-pointer hover:text-blue-600">Nodal Officers (Scheme-wise)</li>
+                  <li onClick={() => handleExternalLink('GRO Directory & Escalation Matrix')} className="cursor-pointer hover:text-blue-600">Grievance Redressal Officers (GROs)</li>
                 </ul>
               </div>
 
@@ -167,15 +172,15 @@ const GoiHeader = () => {
                   <Users size={22} className="mr-3" /> Public
                 </div>
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
-                  <li className="cursor-pointer hover:text-blue-600">Dashboard</li>
-                  <li className="cursor-pointer hover:text-blue-600">Find Institutes on ScholarCore</li>
-                  <li className="cursor-pointer hover:text-blue-600">List of Applicants Processed for Scholarships</li>
-                  <li className="cursor-pointer hover:text-blue-600">Nodal Officers (Scheme-wise)</li>
-                  <li className="cursor-pointer hover:text-blue-600">Nodal Officers (District-wise)</li>
-                  <li className="cursor-pointer hover:text-blue-600">ScholarCore Helpdesk</li>
-                  <li className="cursor-pointer hover:text-blue-600">PFMS Helpdesk</li>
-                  <li className="cursor-pointer hover:text-blue-600">Grievance Registration</li>
-                  <li className="cursor-pointer hover:text-blue-600">CSC Login</li>
+                  <li onClick={() => handleNavigation('/')} className="cursor-pointer hover:text-blue-600">Dashboard</li>
+                  <li onClick={() => handleExternalLink('Public Institute Directory')} className="cursor-pointer hover:text-blue-600">Find Institutes on ScholarCore</li>
+                  <li onClick={() => handleExternalLink('Public Transparency Ledger')} className="cursor-pointer hover:text-blue-600">List of Applicants Processed for Scholarships</li>
+                  <li onClick={() => handleExternalLink('Public Nodal Officer Directory')} className="cursor-pointer hover:text-blue-600">Nodal Officers (Scheme-wise)</li>
+                  <li onClick={() => handleExternalLink('District Officer Directory')} className="cursor-pointer hover:text-blue-600">Nodal Officers (District-wise)</li>
+                  <li onClick={() => { setIsMenuOpen(false); handleScroll('helpdesk'); }} className="cursor-pointer hover:text-blue-600">ScholarCore Helpdesk</li>
+                  <li onClick={() => handleExternalLink('PFMS Ticketing System')} className="cursor-pointer hover:text-blue-600">PFMS Helpdesk</li>
+                  <li onClick={() => handleExternalLink('CPGRAMS Grievance Portal')} className="cursor-pointer hover:text-blue-600">Grievance Registration</li>
+                  <li onClick={() => handleExternalLink('Common Service Centre (CSC) Gateway')} className="cursor-pointer hover:text-blue-600">CSC Login</li>
                 </ul>
               </div>
 
@@ -184,9 +189,9 @@ const GoiHeader = () => {
             {/* Footer Links */}
             <div className="bg-[#eeeeee] p-6 mt-4">
               <ul className="space-y-4 text-[15px] text-gray-700">
-                <li className="cursor-pointer hover:text-blue-600">About ScholarCore</li>
-                <li className="cursor-pointer hover:text-blue-600">Contact us</li>
-                <li className="cursor-pointer hover:text-blue-600">Site map</li>
+                <li onClick={() => { setIsMenuOpen(false); handleScroll('faqs'); }} className="cursor-pointer hover:text-blue-600">About ScholarCore</li>
+                <li onClick={() => { setIsMenuOpen(false); handleScroll('helpdesk'); }} className="cursor-pointer hover:text-blue-600">Contact us</li>
+                <li onClick={() => handleNavigation('/')} className="cursor-pointer hover:text-blue-600">Site map</li>
               </ul>
             </div>
 
