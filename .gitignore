@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+backend/venv/
+backend/__pycache__/
+frontend/node_modules/
+
+# Environment Variables
+.env
+.env.local
+
+# Build output
+frontend/dist/
+dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Database (Optional: If you don't want to push the local SQLite DB)
+# backend/sql_app.db

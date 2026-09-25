@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+  --color-mota-terracotta: #cc4b37;
+  --color-mota-forest: #1b4d3e;
+  --color-mota-ochre: #c48a31;
+}
+
+.bg-textile-pattern {
+  background-image: repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), 
+                    repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+  background-position: 0 0, 10px 10px;
+  background-size: 20px 20px;
+}
+
+/* Accessibility overrides */
+body.hide-images img,
+body.hide-images [style*="background-image"],
+body.hide-images [class*="bg-[url"] {
+  display: none !important;
+}
+
+body.highlight-links a,
+body.highlight-links button {
+  background-color: yellow !important;
+  color: black !important;
+  text-decoration: underline !important;
+  outline: 2px solid orange !important;
+}

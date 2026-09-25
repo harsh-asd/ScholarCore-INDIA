@@ -10,6 +10,15 @@ class SchemeBase(BaseModel):
 class SchemeCreate(SchemeBase):
     pass
 
+class SchemeConfiguratorCreate(BaseModel):
+    scheme_name: str
+    income_threshold: float
+    required_documents: List[str]
+
+class EligibilityRequest(BaseModel):
+    income: float
+    category: str
+
 class Scheme(SchemeBase):
     id: int
     created_at: datetime

@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ShieldCheck, AlertCircle, CheckSquare } from 'lucide-react';
+
+const Registration = () => {
+  const navigate = useNavigate();
+  const [agreed1, setAgreed1] = useState(false);
+  const [agreed2, setAgreed2] = useState(false);
+  const [agreed3, setAgreed3] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+
+  // Form State
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleAgreementSubmit = (e) => {
+    e.preventDefault();
+    if (agreed1 && agreed2 && agreed3) {
+      setShowForm(true);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      await fetch('http://localhost:8000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+      // Redirect to login after registration
+      navigate('/login');
+    } catch {
+      navigate('/login');
+    }
+  };
+
+  if (!showForm) {
+    return (
+      <div className="max-w-4xl mx-auto py-10 px-6">
+        <div className="bg-white shadow-lg border-t-4 border-[var(--color-mota-terracotta)] p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 border-b pb-4">Guidelines for Registration</h2>
+          
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+            <div className="flex items-start">
+              <AlertCircle className="text-yellow-600 mr-3 mt-0.5" size={20} />
+              <p className="text-sm text-yellow-800">
+                Please read the guidelines carefully before starting the registration process. Ensure you have your Aadhaar Card, Income Certificate, and Bank Passbook ready.
+              </p>
+            </div>
+          </div>
+
+          <form onSubmit={handleAgreementSubmit} className="space-y-4 mb-8">
+            <label className="flex items-start space-x-3 p-3 bg-gray-50 rounded border border-gray-200 cursor-pointer hover:bg-gray-100">
+              <input type="checkbox" required checked={agreed1} onChange={e=>setAgreed1(e.target.checked)} className="mt-1 w-5 h-5 text-[var(--color-mota-terracotta)] rounded" />
+              <span className="text-sm text-gray-700">I have read and understood the guidelines for registration.</span>
+            </label>
+            <label className="flex items-start space-x-3 p-3 bg-gray-50 rounded border border-gray-200 cursor-pointer hover:bg-gray-100">
+              <input type="checkbox" required checked={agreed2} onChange={e=>setAgreed2(e.target.checked)} className="mt-1 w-5 h-5 text-[var(--color-mota-terracotta)] rounded" />
+              <span className="text-sm text-gray-700">I am aware that if more than one application is found to be submitted by me, all my applications are liable to be rejected.</span>
+            </label>
+            <label className="flex items-start space-x-3 p-3 bg-gray-50 rounded border border-gray-200 cursor-pointer hover:bg-gray-100">
+              <input type="checkbox" required checked={agreed3} onChange={e=>setAgreed3(e.target.checked)} className="mt-1 w-5 h-5 text-[var(--color-mota-terracotta)] rounded" />
+              <span className="text-sm text-gray-700">I consent to use my Aadhaar details for demographic authentication.</span>
+            </label>
+
+            <div className="mt-6 flex justify-end">
+              <button type="submit" disabled={!(agreed1 && agreed2 && agreed3)} className="bg-[var(--color-mota-forest)] text-white px-6 py-2 rounded font-bold shadow disabled:opacity-50 flex items-center">
+                Continue <ChevronRight size={18} className="ml-1" />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-md mx-auto py-16 px-6">
+       <div className="bg-white shadow-xl rounded-lg p-8 border-t-4 border-[var(--color-mota-forest)]">
+         <div className="flex justify-center mb-6">
+           <ShieldCheck size={48} className="text-[var(--color-mota-forest)]" />
+         </div>
+         <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">Applicant Registration</h2>
+         
+         <form onSubmit={handleRegister} className="space-y-5">
+           <div>
+             <label className="block text-sm font-medium text-gray-700 mb-1">Full Name (As per Aadhaar)</label>
+             <input required type="text" value={name} onChange={e=>setName(e.target.value)} className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)]" />
+           </div>
+           <div>
+             <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+             <input required type="email" value={email} onChange={e=>setEmail(e.target.value)} className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)]" />
+           </div>
+           <div>
+             <label className="block text-sm font-medium text-gray-700 mb-1">Create Password</label>
+             <input required type="password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full border-gray-300 rounded p-2 border focus:ring-[var(--color-mota-forest)]" />
+           </div>
+           <button type="submit" className="w-full bg-[var(--color-mota-forest)] text-white font-bold py-3 rounded shadow hover:bg-opacity-90 transition mt-4">
+             Register
+           </button>
+         </form>
+       </div>
+    </div>
+  );
+};
+
+// Add missing icon
+import { ChevronRight } from 'lucide-react';
+
+export default Registration;

@@ -1,90 +1,72 @@
-# ScholarCore India
+# AI-Enabled Scholarship & Fellowship Management System
+### Smart India Hackathon Submission (PS ID: 26239)
+**Ministry of Tribal Affairs (MoTA)**
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Tesseract OCR](https://img.shields.io/badge/Tesseract_OCR-4285F4?style=for-the-badge)
-
-**Smart India Hackathon Submission**  
-**Problem Statement ID:** 26239  
-**Ministry:** Ministry of Tribal Affairs (MoTA)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![AI/ML](https://img.shields.io/badge/AI_Engine-Tesseract_%7C_spaCy_%7C_Naarad Muni-4285F4?style=for-the-badge)
 
 ---
 
-## 🎯 Executive Summary & Problem-Solution Fit
+## 🎯 The Problem
+The Ministry of Tribal Affairs (MoTA) processes thousands of fellowship (NFST) and scholarship (NOS) applications annually. Currently, this involves massive bottlenecks due to manual scrutiny of documents, lack of real-time multi-lingual support, and fragmented applicant tracking.
 
-Currently, the evaluation of tribal scholarship applications involves massive bottlenecks due to manual scrutiny of physical or scanned documents. This leads to administrative delays, human error, and prolonged wait times for deserving students.
+## 🚀 The Solution: A Next-Generation Portal
+We have built an **AI-enabled, full-stack platform** designed to autonomously parse, evaluate, and track scholarship applications for MoTA, fully mimicking the National Scholarship Portal (NSP) with massive technological upgrades.
 
-The **ScholarCore India** platform is an AI-enabled portal designed to autonomously parse, evaluate, and track scholarship applications. By leveraging **Document Intelligence (Tesseract OCR & spaCy)** and a **Dynamic JSON Rule Engine**, the system extracts key metrics (like annual income and exam scores) directly from uploaded certificates. It then validates this data against configurable government schemes to instantly approve applications or flag anomalies for manual review—drastically reducing the bureaucratic backlog and ensuring rapid disbursement of funds.
-
+### Key Innovations & Features
+1. **AI OCR Document Scrutiny:** Utilizes Tesseract OCR + spaCy to extract key entities (income, marks, caste) from uploaded certificates, assigns an AI Confidence Score, and flags discrepancies instantly.
+2. **"Naarad Muni" Conversational AI Chatbot:** A fully integrated Helpdesk assistant that can autonomously answer queries regarding scheme eligibility, application deadlines, and status tracking right from the homepage.
+3. **Universal Accessibility Engine (100% GoI Compliant):** A live React Context engine that allows users to seamlessly invert colors, toggle Dark/Light mode, highlight links, hide images, and adjust font scales dynamically. 
+4. **Multilingual Architecture:** Real-time translation engine supporting English, Hindi, and Telugu, drastically lowering the barrier to entry for tribal students.
+5. **Configurable Rule-Engine:** MoTA admins can configure rule sets (e.g., Max Income ₹6,000,000, Min Marks 55%) for NFST vs NOS. The engine automatically approves or rejects candidates based on OCR-extracted data against these JSON rules.
+6. **Predictive Dashboards & Tracking:** A detailed, visual timeline for applicants to track their PFMS and Ministry-level approvals, combined with an Admin Dashboard for demographic forecasting and scrutiny review.
 
 ---
 
 ## 🏗️ Architecture & Tech Stack
 
-### Tech Stack
-* **Frontend:** React.js, Tailwind CSS, Recharts (Admin Dashboards), Vite
-* **Backend:** Python, FastAPI, SQLAlchemy
-* **AI/OCR Pipeline:** Tesseract OCR, spaCy, Pillow
-* **Database:** PostgreSQL (utilizing JSONB for dynamic rule schemas)
-* **Infrastructure:** Docker, Docker Compose, Nginx
-
-### Data Flow
-1. **Ingestion:** The applicant uploads a scanned certificate via the React frontend.
-2. **Extraction:** The FastAPI backend receives the document and processes it through the Tesseract/spaCy pipeline, extracting critical entities and calculating an AI Confidence Score.
-3. **Evaluation:** The extracted JSON payload is passed to the Rule Engine. The engine fetches the corresponding scheme's criteria from PostgreSQL.
-4. **Decision:** 
-   - If criteria match and confidence is >75%: `APPROVED`
-   - If criteria fail: `REJECTED`
-   - If data is missing or OCR confidence is low: `MANUAL_REVIEW`
-5. **Analytics:** The dashboard consumes optimized SQL aggregates via `/api/admin/analytics-summary` to render real-time charts.
+```text
++-------------------+       +-----------------------+       +-------------------+
+|                   |       |                       |       |                   |
+|  React.js (Vite)  | <---> |  FastAPI (Python)     | <---> | SQLite3 Database  |
+|  Tailwind CSS v4  |       |  (Tesseract + spaCy)  |       | (Schemas & Rules) |
+|  Zustand / Context|       |  (Naarad Muni Chat Engine)   |       |                   |
+|                   |       |                       |       |                   |
++-------------------+       +-----------------------+       +-------------------+
+    Frontend Port 5173           Backend Port 8000              Local Storage
+```
 
 ---
 
-## 📸 Screenshots
+## 🛠️ Getting Started (Live Demo Instructions)
 
-*Replace these placeholders with your actual screenshots before presentation.*
+### 1. Launch the Backend API & Database
+We have included a database seeder that automatically populates the database with realistic MoTA schemes (NOS & NFST) and highly realistic mock applications with OCR confidence scores to demonstrate the AI pipeline.
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python seed_db.py
+uvicorn main:app --reload --port 8000
+```
+*Backend API Docs (Swagger) available at: [http://localhost:8000/docs](http://localhost:8000/docs)*
 
-### Applicant Tracking Dashboard
-![Applicant Dashboard](docs/applicant-dashboard.png)
+### 2. Launch the Frontend React UI
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*Frontend available at: [http://localhost:5173](http://localhost:5173)*
 
-### Admin Analytics & Data Table
-![Admin Analytics Dashboard](docs/admin-analytics.png)
-
----
-
-## 🚀 Getting Started (Local Deployment)
-
-The entire application is fully containerized. You do not need to manually install Python, Node, PostgreSQL, or Tesseract OCR on your host machine.
-
-### Prerequisites
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
-
-### Quick Start
-
-1. **Clone the repository and navigate to the root directory:**
-   ```bash
-   git clone <your-repo-url>
-   cd SIH_26239
-   ```
-
-2. **Launch the stack using Docker Compose:**
-   ```bash
-   docker-compose up --build -d
-   ```
-   *This command will pull the Postgres image, build the FastAPI/Tesseract backend container, compile the React frontend, and spin up the Nginx web server.*
-
-3. **Access the Application:**
-   - **Frontend UI:** [http://localhost:80](http://localhost:80) (or `http://localhost:8080` depending on your port mapping)
-   - **Backend API Docs:** [http://localhost:8000/docs](http://localhost:8000/docs)
-
-4. **Shutdown:**
-   To stop the containers and gracefully shut down the application:
-   ```bash
-   docker-compose down
-   ```
+### 3. Demo Highlights for Judges
+1. **Homepage:** Click the **Students, Institutions, Officers, Public, Fellowship** cards to see the dynamic grids unfold perfectly (cloned from NSP).
+2. **Accessibility:** Click the Universal Accessibility Icon (Top Right) and test the Dark Contrast and Text Scaling engines.
+3. **Naarad Muni Chatbot:** Click the floating Chatbot in the bottom right and ask "What is the eligibility for NOS?".
+4. **Admin Dashboard:** Navigate to `/admin` to see the seeded database of realistic flagged/approved candidates based on the AI OCR extraction!
 
 ---
-
-*Built with ❤️ for the Smart India Hackathon.*
+*Built with ❤️ for the Smart India Hackathon 2026.*
