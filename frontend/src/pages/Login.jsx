@@ -230,7 +230,7 @@ const Login = () => {
                  <label className="block text-sm font-semibold text-gray-700 mb-2">Security Captcha</label>
                  <div className="flex items-center space-x-4 mb-3">
                    <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-gray-300 w-32 h-10 flex items-center justify-center rounded overflow-hidden select-none relative">
-                     <div className="absolute inset-0 opacity-20" style={ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '8px 8px' }></div>
+                     <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '8px 8px' }}></div>
                      <span className="text-xl font-bold font-mono tracking-[0.2em] text-gray-800 italic transform -skew-x-12 relative z-10">{generatedCaptcha}</span>
                    </div>
                    <button type="button" onClick={() => alert("Captcha Refreshed!")} className="text-gray-500 hover:text-[#1E5642] transition p-1 bg-white border border-gray-300 rounded shadow-sm" title="Refresh Captcha">
