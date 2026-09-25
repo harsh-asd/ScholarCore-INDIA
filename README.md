@@ -18,10 +18,10 @@ We have built an **AI-enabled, full-stack platform** designed to autonomously pa
 ### Key Innovations & Features
 1. **AI OCR Document Scrutiny:** Utilizes Tesseract OCR + spaCy to extract key entities (income, marks, caste) from uploaded certificates, assigns an AI Confidence Score, and flags discrepancies instantly.
 2. **"Naarad Muni" Conversational AI Chatbot:** A fully integrated Helpdesk assistant that can autonomously answer queries regarding scheme eligibility, application deadlines, and status tracking right from the homepage.
-3. **Universal Accessibility Engine (100% GoI Compliant):** A live React Context engine that allows users to seamlessly invert colors, toggle Dark/Light mode, highlight links, hide images, and adjust font scales dynamically. 
+3. **Universal Accessibility Engine (GIGW-Aligned):** A live React Context engine that allows users to seamlessly invert colors, toggle Dark/Light mode, highlight links, hide images, and adjust font scales dynamically. 
 4. **Multilingual Architecture:** Real-time translation engine supporting English, Hindi, and Telugu, drastically lowering the barrier to entry for tribal students.
-5. **Configurable Rule-Engine:** MoTA admins can configure rule sets (e.g., Max Income ₹6,000,000, Min Marks 55%) for NFST vs NOS. The engine automatically approves or rejects candidates based on OCR-extracted data against these JSON rules.
-6. **Predictive Dashboards & Tracking:** A detailed, visual timeline for applicants to track their PFMS and Ministry-level approvals, combined with an Admin Dashboard for demographic forecasting and scrutiny review.
+5. **Configurable Rule-Engine:** MoTA admins can configure rule sets (e.g., Max Income ₹2,50,000, Min Marks 55%) for NFST vs NOS. The engine automatically approves or rejects candidates based on OCR-extracted data against these JSON rules.
+6. **Analytics & Tracking Dashboards:** A detailed, visual timeline for applicants to track their PFMS and Ministry-level approvals, combined with an Admin Dashboard for real-time scrutiny review and demographic breakdowns (with roadmap for predictive forecasting).
 
 ---
 
