@@ -101,7 +101,7 @@ const AdminDashboard = () => {
               <button className="flex items-center space-x-3 p-4 text-sm font-medium text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
                 <Users size={18} /><span>Institute Management</span>
               </button>
-              <button className="flex items-center space-x-3 p-4 text-sm font-medium text-gray-600 hover:bg-gray-50 transition border-l-4 border-transparent">
+              <button onClick={() => setActiveTab('MERIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'MERIT' ? 'bg-[var(--color-mota-terracotta)] text-white border-l-4 border-orange-800' : 'text-gray-600 hover:bg-gray-50'}`}>
                 <FileText size={18} /><span>Merit List Generation</span>
               </button>
             </nav>
@@ -286,6 +286,87 @@ const AdminDashboard = () => {
             </div>
           )}
           
+
+          {/* TAB: MERIT LIST GENERATION */}
+          {activeTab === 'MERIT' && userRole === 'MINISTRY' && (
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex justify-between items-end">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800">Merit List Generation & PFMS Push</h2>
+                  <p className="text-gray-600 text-sm mt-1">Final AI-Assisted ranking for transparent fund allocation (NFST Scheme).</p>
+                </div>
+                <button onClick={() => alert('Merit List finalized and securely pushed to PFMS (Public Financial Management System) for DBT disbursement.')} className="bg-blue-600 text-white px-5 py-2.5 rounded shadow-sm text-sm font-bold flex items-center hover:bg-blue-700 transition">
+                  <CheckCircle size={18} className="mr-2"/> Push Final List to PFMS
+                </button>
+              </div>
+
+              {/* Fund overview */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div className="bg-gray-800 text-white p-5 rounded-lg shadow-sm border border-gray-700">
+                  <p className="text-xs font-bold uppercase tracking-wide text-gray-400">Total Allocated Fund (NFST)</p>
+                  <h3 className="text-2xl font-black mt-1">₹50,00,00,000</h3>
+                </div>
+                <div className="bg-green-50 p-5 rounded-lg shadow-sm border border-green-200">
+                  <p className="text-xs font-bold uppercase tracking-wide text-green-700">Required For Top 1000 Rankers</p>
+                  <h3 className="text-2xl font-black text-green-900 mt-1">₹42,50,00,000</h3>
+                </div>
+                <div className="bg-orange-50 p-5 rounded-lg shadow-sm border border-orange-200">
+                  <p className="text-xs font-bold uppercase tracking-wide text-orange-700">Remaining Budget Balance</p>
+                  <h3 className="text-2xl font-black text-orange-900 mt-1">₹7,50,00,000</h3>
+                </div>
+              </div>
+
+              {/* Ranking Table */}
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                  <h3 className="font-bold text-gray-800">AI Generated Ranked Merit List (ST Candidates)</h3>
+                  <button className="text-sm text-[#C85237] font-bold hover:underline">Regenerate Rankings</button>
+                </div>
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-white">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Rank</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Applicant Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">CGPA / Score</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">AI Score</th>
+                      <th className="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Disbursement Amt</th>
+                      <th className="px-6 py-3 text-right text-xs font-bold text-gray-500 uppercase">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    <tr className="hover:bg-blue-50 bg-blue-50/30">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">#1</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">Aditi Sharma</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">9.82</td>
+                      <td className="px-6 py-4 whitespace-nowrap"><span className="px-2 py-1 bg-green-100 text-green-800 font-bold text-xs rounded">99.2%</span></td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">₹42,500</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right"><span className="px-2 py-1 bg-blue-100 text-blue-800 font-bold text-xs rounded-full">Ready for PFMS</span></td>
+                    </tr>
+                    <tr className="hover:bg-blue-50 bg-blue-50/30">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">#2</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Ravi Meena</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-700">9.75</td>
+                      <td className="px-6 py-4 whitespace-nowrap"><span className="px-2 py-1 bg-green-100 text-green-800 font-bold text-xs rounded">98.5%</span></td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">₹42,500</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right"><span className="px-2 py-1 bg-blue-100 text-blue-800 font-bold text-xs rounded-full">Ready for PFMS</span></td>
+                    </tr>
+                    <tr className="hover:bg-blue-50 bg-blue-50/30">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">#3</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Sunita Hembrom</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-700">9.60</td>
+                      <td className="px-6 py-4 whitespace-nowrap"><span className="px-2 py-1 bg-green-100 text-green-800 font-bold text-xs rounded">97.8%</span></td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">₹42,500</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right"><span className="px-2 py-1 bg-blue-100 text-blue-800 font-bold text-xs rounded-full">Ready for PFMS</span></td>
+                    </tr>
+                    <tr className="bg-gray-50 border-t-2 border-gray-300">
+                      <td colSpan="6" className="px-6 py-3 text-center text-xs font-bold text-gray-500 uppercase tracking-widest">--- 997 more candidates ---</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
         </div>
       </main>
     </div>
