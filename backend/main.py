@@ -248,3 +248,16 @@ def login_user(req: LoginReq, db: Session = Depends(get_db)):
     # In a real app we check passwords here. For hackathon we just check if email exists.
     token = jwt.encode({"sub": req.email, "exp": datetime.utcnow() + timedelta(hours=1)}, SECRET_KEY)
     return {"access_token": token, "token_type": "bearer", "name": user.name}
+
+@app.get("/api/admin/wipe-db")
+def wipe_database(db: Session = Depends(get_db)):
+    try:
+        # Delete all records from all tables
+        db.query(models.Application).delete()
+        db.query(models.User).delete()
+        db.query(models.Scheme).delete()
+        db.commit()
+        return {"message": "Production Database Wiped Successfully! All accounts deleted."}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
