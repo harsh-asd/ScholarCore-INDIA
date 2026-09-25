@@ -34,18 +34,29 @@ const ApplicantDashboard = () => {
     setHasMatched(true);
   };
 
+  const triggerQualityScan = (selectedFile) => {
+    setFile(selectedFile);
+    setErrorMsg(null);
+    setQualityScore(null);
+    setIsScanningQuality(true);
+    
+    // Simulate AI Blur / Quality Detection before allowing upload
+    setTimeout(() => {
+      setIsScanningQuality(false);
+      setQualityScore(96 + Math.floor(Math.random() * 4)); // Returns 96-99%
+    }, 1500);
+  };
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      setErrorMsg(null);
+      triggerQualityScan(e.target.files[0]);
     }
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setFile(e.dataTransfer.files[0]);
-      setErrorMsg(null);
+      triggerQualityScan(e.dataTransfer.files[0]);
     }
   };
 
