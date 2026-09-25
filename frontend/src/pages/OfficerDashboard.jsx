@@ -10,7 +10,7 @@ import {
   PieChart, Pie, Cell
 } from 'recharts';
 
-const AdminDashboard = () => {
+const OfficerDashboard = () => {
 
   const safeDecode = (key, fallback) => {
     const val = localStorage.getItem(key);
@@ -62,7 +62,7 @@ const AdminDashboard = () => {
           </div>
           <div>
             <h1 className="text-xl font-bold leading-tight">Ministry of Tribal Affairs</h1>
-            <p className="text-xs text-green-100 opacity-90">'Ministry Executive Dashboard'</p>
+            <p className="text-xs text-green-100 opacity-90">'Nodal Officer Dashboard'</p>
           </div>
         </div>
         <div className="flex items-center space-x-6">
@@ -74,11 +74,11 @@ const AdminDashboard = () => {
           </div>
           <div className="flex items-center space-x-3 border-l border-green-700 pl-6">
             <div className="text-right hidden md:block">
-              <p className="text-sm font-bold">'Hon. Secretary'</p>
+              <p className="text-sm font-bold">'State Nodal Officer'</p>
               <p className="text-xs text-green-200">ID: MOTA-ADM-09</p>
             </div>
             <div className="w-10 h-10 bg-green-700 rounded-full flex items-center justify-center text-lg font-bold shadow-inner">
-              'HS'
+              'NO'
             </div>
           </div>
           <button onClick={handleLogout} className="text-sm text-red-200 hover:text-white font-bold transition">Logout</button>
@@ -100,15 +100,11 @@ const AdminDashboard = () => {
               <button onClick={() => setActiveTab('VERIFICATION')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'VERIFICATION' ? 'bg-[var(--color-mota-forest)] text-white border-l-4 border-green-800' : 'text-gray-600 hover:bg-gray-50'}`}>
                 <CheckSquare size={18} /><span>Application Verification</span>
               </button>
-              <button onClick={() => setActiveTab('RULES')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'RULES' ? 'bg-[var(--color-mota-terracotta)] text-white border-l-4 border-orange-800' : 'text-gray-600 hover:bg-gray-50'}`}>
-                  <Sliders size={18} /><span>Dynamic Rule Engine</span>
-                </button>
+              
               <button onClick={() => setActiveTab('AUDIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'AUDIT' ? 'bg-[var(--color-mota-forest)] text-white border-l-4 border-green-800' : 'text-gray-600 hover:bg-gray-50'}`}>
                 <FileText size={18} /><span>Audit Logs & Appeals</span>
               </button>
-              <button onClick={() => setActiveTab('MERIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'MERIT' ? 'bg-[var(--color-mota-terracotta)] text-white border-l-4 border-orange-800' : 'text-gray-600 hover:bg-gray-50'}`}>
-                <FileText size={18} /><span>Merit List Generation</span>
-              </button>
+              
             </nav>
           </div>
         </div>
@@ -189,7 +185,7 @@ const AdminDashboard = () => {
           )}
 
           {/* TAB: DYNAMIC RULE ENGINE */}
-          {activeTab === 'RULES' && (
+          {activeTab === 'RULES' && userRole === 'MINISTRY' && (
             <div className="space-y-6 animate-fade-in">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800">Dynamic Rule Engine Configuration</h2>
@@ -293,7 +289,7 @@ const AdminDashboard = () => {
           
 
           {/* TAB: MERIT LIST GENERATION */}
-          {activeTab === 'MERIT' && (
+          {activeTab === 'MERIT' && userRole === 'MINISTRY' && (
             <div className="space-y-6 animate-fade-in">
               <div className="flex justify-between items-end">
                 <div>
@@ -458,4 +454,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default OfficerDashboard;

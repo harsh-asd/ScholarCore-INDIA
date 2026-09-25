@@ -75,14 +75,27 @@ const Sidebar = () => {
         </>
       )}
 
-      {(userRole === 'MINISTRY' || userRole === 'OFFICER' || userRole === 'ADMIN') && (
+      {userRole === 'MINISTRY' && (
         <>
           <div className="p-4 bg-[#0a1520] border-b border-gray-700">
             <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">Ministry Menu</p>
           </div>
           <div className="py-2 flex-grow">
             {renderLinks([
-              { name: 'MoTA Dashboard', path: '/admin', icon: <ShieldCheck size={18} /> }
+              { name: 'Executive Dashboard', path: '/admin', icon: <ShieldCheck size={18} /> }
+            ])}
+          </div>
+        </>
+      )}
+      
+      {userRole === 'OFFICER' && (
+        <>
+          <div className="p-4 bg-[#0a1520] border-b border-gray-700">
+            <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">Nodal Officer Menu</p>
+          </div>
+          <div className="py-2 flex-grow">
+            {renderLinks([
+              { name: 'Officer Dashboard', path: '/officer', icon: <ShieldCheck size={18} /> }
             ])}
           </div>
         </>

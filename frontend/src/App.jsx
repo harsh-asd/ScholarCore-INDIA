@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import ApplicantDashboard from './pages/ApplicantDashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import OfficerDashboard from './pages/OfficerDashboard';
 import InstituteDashboard from './pages/InstituteDashboard';
 import AnalyticsDashboard from './pages/AnalyticsDashboard';
 import Registration from './pages/Registration';
@@ -54,8 +55,9 @@ function App() {
             <Route path="/applicant/status" element={<ApplicationStatus />} />
             <Route path="/applicant/grievances" element={<Grievances />} />
             
-            <Route path="/admin" element={<AdminDashboard />} />
+                        <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/analytics" element={<AnalyticsDashboard />} />
+            <Route path="/officer" element={<OfficerDashboard />} />
             <Route path="/institute" element={<InstituteDashboard />} />
           </Route>
         </Routes>
