@@ -285,7 +285,46 @@ const Login = () => {
           </div>
         </div>
       )}
-    </div>
+    
+         {/* 2-Step Authentication Modal */}
+         {showPinModal && (
+           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] px-4 backdrop-blur-sm">
+             <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden animate-slide-up">
+               <div className="bg-[#1E5642] px-6 py-4 flex justify-between items-center">
+                 <h3 className="font-bold text-white flex items-center"><ShieldCheck size={20} className="mr-2" /> 2-Step Auth</h3>
+                 <button onClick={() => setShowPinModal(false)} className="text-white hover:text-red-300 transition"><X size={20}/></button>
+               </div>
+               
+               <div className="p-6">
+                 <p className="text-sm text-gray-600 mb-6 text-center">
+                   Please enter the 3-digit Security PIN you created during registration to access your ScholarCore dashboard.
+                 </p>
+
+                 {error && <div className="mb-4 bg-red-50 text-red-700 p-2 rounded text-xs font-bold text-center border border-red-200">{error}</div>}
+
+                 <div className="space-y-4">
+                   <input 
+                     type="password" 
+                     maxLength="3"
+                     value={securityPin}
+                     onChange={(e) => {
+                       setError('');
+                       setSecurityPin(e.target.value.replace(/\D/g, ''));
+                     }}
+                     className="w-full text-center tracking-[1em] font-mono text-3xl border-gray-300 rounded-lg p-4 border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none"
+                     placeholder="•••"
+                   />
+                   
+                   <button onClick={handlePinVerify} className="w-full bg-[#1E5642] hover:bg-[#164332] text-white font-bold py-3 px-4 rounded-lg shadow transition">
+                     Verify & Login
+                   </button>
+                 </div>
+               </div>
+             </div>
+           </div>
+         )}
+
+      </div>
   );
 };
 
