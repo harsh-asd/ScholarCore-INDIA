@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Lock, UserCircle, Building2, ShieldCheck, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Lock, UserCircle, Building2, ShieldCheck, AlertCircle, ArrowLeft, X } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
