@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UploadCloud, FileText, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { UploadCloud, FileText, AlertTriangle, ShieldCheck, CheckCircle } from 'lucide-react';
 import Stepper from '../components/Stepper';
 
 const ApplicantDashboard = () => {
