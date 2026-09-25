@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShieldCheck, AlertCircle, CheckSquare } from 'lucide-react';
+import { ShieldCheck, AlertCircle, CheckSquare, ChevronRight, Smartphone, X, CheckCircle2 } from 'lucide-react';
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -13,6 +13,31 @@ const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // OTP State
+  const [showOtpModal, setShowOtpModal] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [otpError, setOtpError] = useState('');
+  const [isDigilockerVerified, setIsDigilockerVerified] = useState(false);
+
+  const handleDigilockerAuth = () => {
+    setShowOtpModal(true);
+    setOtp('');
+    setOtpError('');
+  };
+
+  const verifyOtp = () => {
+    if (otp === '123456') {
+      setIsDigilockerVerified(true);
+      setShowOtpModal(false);
+      // Auto-fill form to simulate DigiLocker payload
+      setName('Aditi Sharma');
+      setEmail('aditi.sharma@example.com');
+      alert('DigiLocker KYC successful! Demographic details auto-filled.');
+    } else {
+      setOtpError('Invalid OTP. For hackathon demo, use 123456');
+    }
+  };
 
   const handleAgreementSubmit = (e) => {
     e.preventDefault();
@@ -84,9 +109,15 @@ const Registration = () => {
            <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">OTR Generation</h2>
            <p className="text-sm text-gray-500 text-center mb-6">Authenticate via DigiLocker for instant KYC</p>
            
-           <button type="button" onClick={() => alert('Redirecting to DigiLocker OAuth...')} className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition mb-6">
-             <ShieldCheck size={20} className="mr-2" /> Authenticate with DigiLocker
-           </button>
+                      {!isDigilockerVerified ? (
+             <button type="button" onClick={handleDigilockerAuth} className="w-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition mb-6">
+               <ShieldCheck size={20} className="mr-2" /> Authenticate with DigiLocker
+             </button>
+           ) : (
+             <div className="w-full flex items-center justify-center bg-green-50 border border-green-200 text-green-700 font-bold py-3 px-4 rounded-lg shadow-sm mb-6">
+               <CheckCircle2 size={20} className="mr-2" /> DigiLocker KYC Verified
+             </div>
+           )}
            
            <div className="relative flex py-2 items-center w-full mb-4">
              <div className="flex-grow border-t border-gray-300"></div>
@@ -113,11 +144,67 @@ const Registration = () => {
            </button>
          </form>
        </div>
+
+       {/* Realistic OTP Modal */}
+       {showOtpModal && (
+         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 px-4">
+           <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden transform transition-all">
+             <div className="bg-[#1E5642] px-4 py-3 flex justify-between items-center text-white">
+                <h3 className="font-bold flex items-center">
+                  <ShieldCheck size={18} className="mr-2" /> Aadhaar e-KYC
+                </h3>
+                <button onClick={() => setShowOtpModal(false)} className="text-white hover:text-gray-200">
+                  <X size={20} />
+                </button>
+             </div>
+             
+             <div className="p-6">
+               <div className="flex justify-center mb-4">
+                 <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center">
+                   <Smartphone size={32} className="text-blue-600" />
+                 </div>
+               </div>
+               
+               <p className="text-center text-sm text-gray-600 mb-6 font-medium">
+                 An OTP has been sent to your Aadhaar-linked mobile number ending in <strong className="text-gray-900">******8932</strong>.
+               </p>
+
+               {otpError && (
+                 <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded text-xs text-center font-bold">
+                   {otpError}
+                 </div>
+               )}
+
+               <div className="space-y-4">
+                 <div>
+                   <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Enter 6-Digit OTP</label>
+                   <input 
+                     type="text" 
+                     maxLength="6"
+                     value={otp}
+                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                     className="w-full text-center tracking-[0.5em] font-mono text-xl border-gray-300 rounded-lg p-3 border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none"
+                     placeholder="••••••"
+                   />
+                 </div>
+                 
+                 <button onClick={verifyOtp} className="w-full bg-[#1E5642] hover:bg-[#164332] text-white font-bold py-3 px-4 rounded-lg shadow transition flex justify-center items-center">
+                   Verify & Link Account
+                 </button>
+                 
+                 <p className="text-center text-xs text-blue-600 font-semibold cursor-pointer hover:underline mt-4">
+                   Resend OTP (00:45)
+                 </p>
+               </div>
+             </div>
+           </div>
+         </div>
+       )}
+
     </div>
   );
 };
 
-// Add missing icon
-import { ChevronRight } from 'lucide-react';
+
 
 export default Registration;
