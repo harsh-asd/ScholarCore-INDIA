@@ -58,6 +58,13 @@ const AnalyticsDashboard = () => {
     fetchAnalytics();
   }, []);
 
+  
+  if (error && !data) {
+    return <div className="p-8 text-red-600 font-bold">{error}</div>;
+  }
+
+  if (!data) return null;
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-96">
