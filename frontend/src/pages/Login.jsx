@@ -13,6 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [captcha, setCaptcha] = useState('');
   const [showPinModal, setShowPinModal] = useState(false);
+  const [isRouting, setIsRouting] = useState(false);
   const [securityPin, setSecurityPin] = useState('');
   const [generatedCaptcha] = useState(Math.random().toString(36).substring(2, 8).toUpperCase());
   const [error, setError] = useState('');
@@ -40,7 +41,11 @@ const Login = () => {
       // Success: Reset attempts
       localStorage.removeItem('_sch_attempts');
       setShowPinModal(false);
-      navigate('/applicant');
+      setIsRouting(true);
+      setTimeout(() => {
+        setIsRouting(false);
+        navigate('/applicant');
+      }, 1800);
     } else {
       // Failure: Track attempts
       let attempts = parseInt(localStorage.getItem('_sch_attempts') || '0') + 1;
@@ -75,10 +80,10 @@ const Login = () => {
     if (role === 'ADMIN') {
       if (email.includes('ministry')) {
         localStorage.setItem('_sch_role', btoa('MINISTRY'));
-        navigate('/admin');
+        setIsRouting(true); setTimeout(() => navigate('/admin'), 1500);
       } else if (email.includes('officer') || email.includes('admin')) {
         localStorage.setItem('_sch_role', btoa('OFFICER'));
-        navigate('/admin');
+        setIsRouting(true); setTimeout(() => navigate('/admin'), 1500);
       } else {
         setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
       }
@@ -88,7 +93,7 @@ const Login = () => {
     if (role === 'INSTITUTE') {
       if (email.includes('ino') || email.includes('institute')) {
         localStorage.setItem('_sch_role', btoa('INSTITUTE'));
-        navigate('/institute');
+        setIsRouting(true); setTimeout(() => navigate('/institute'), 1500);
       } else {
         setError('Invalid Institute credentials. Use ino@institute.edu');
       }
@@ -247,6 +252,16 @@ const Login = () => {
 
          </div>
        </div>
+
+      {/* GLOBAL ASHOKA EMBLEM LOADER */}
+      {isRouting && (
+        <div className="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transition-opacity">
+          <div className="relative flex justify-center items-center w-36 h-36">
+             <div className="absolute inset-0 border-[6px] border-gray-100 border-t-[#C85237] border-b-[#1E5642] rounded-full animate-spin"></div>
+             <img src="/ashoka_emblem.png" alt="Loading..." className="h-20 w-auto relative z-10 animate-pulse" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -7,6 +7,7 @@ const GoiHeader = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isRouting, setIsRouting] = useState(false);
 
   const handleScroll = (id) => {
     navigate('/');
@@ -20,7 +21,11 @@ const GoiHeader = () => {
 
   const handleNavigation = (path) => {
     setIsMenuOpen(false);
-    navigate(path);
+    setIsRouting(true);
+    setTimeout(() => {
+      setIsRouting(false);
+      navigate(path);
+    }, 1500); // Show Ashoka loader for 1.5s
   };
 
   return (
@@ -185,6 +190,16 @@ const GoiHeader = () => {
               </ul>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* GLOBAL ASHOKA EMBLEM LOADER */}
+      {isRouting && (
+        <div className="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transition-opacity">
+          <div className="relative flex justify-center items-center w-36 h-36">
+             <div className="absolute inset-0 border-[6px] border-gray-100 border-t-[#C85237] border-b-[#1E5642] rounded-full animate-spin"></div>
+             <img src="/ashoka_emblem.png" alt="Loading..." className="h-20 w-auto relative z-10 animate-pulse" />
           </div>
         </div>
       )}
