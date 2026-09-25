@@ -99,11 +99,7 @@ const ApplicantDashboard = () => {
           </div>
           <div>
             <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide">Category</label>
-            <select value={matchCategory} onChange={e => setMatchCategory(e.target.value)} className="mt-1 block w-40 border border-gray-300 rounded p-2 text-sm focus:ring-[var(--color-mota-forest)]">
-              <option value="ST">ST</option>
-              <option value="SC">SC</option>
-              <option value="OBC">OBC</option>
-            </select>
+            <div className="mt-1 block w-40 border border-gray-200 bg-gray-50 rounded p-2 text-sm text-gray-500 font-bold cursor-not-allowed">Scheduled Tribe (ST)</div>
           </div>
           <button onClick={checkEligibility} className="bg-[var(--color-mota-forest)] text-white px-6 py-2 rounded text-sm font-medium hover:opacity-90">
             Check Eligibility
