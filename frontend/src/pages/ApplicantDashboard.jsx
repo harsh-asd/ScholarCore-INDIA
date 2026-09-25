@@ -16,7 +16,7 @@ const ApplicantDashboard = () => {
 
   const checkEligibility = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/schemes/eligible', {
+      const res = await fetch('https://scholarcore-india.onrender.com/api/schemes/eligible', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ income: parseFloat(matchIncome), category: matchCategory })
@@ -66,7 +66,7 @@ const ApplicantDashboard = () => {
     formData.append('user_id', 1);
     
     try {
-      const res = await fetch('http://localhost:8000/api/evaluate-application', {
+      const res = await fetch('https://scholarcore-india.onrender.com/api/evaluate-application', {
         method: 'POST',
         body: formData,
       });

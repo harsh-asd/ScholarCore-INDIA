@@ -50,7 +50,7 @@ const ApplicationForm = () => {
          }
        };
 
-       const response = await fetch('http://localhost:8000/applications/', { 
+       const response = await fetch('https://scholarcore-india.onrender.com/applications/', { 
          method: 'POST', 
          headers: {'Content-Type': 'application/json'},
          body: JSON.stringify(payload)

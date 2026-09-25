@@ -7,7 +7,7 @@ const InstituteDashboard = () => {
 
   useEffect(() => {
     // Fetch applications from the backend
-    fetch('http://localhost:8000/applications/')
+    fetch('https://scholarcore-india.onrender.com/applications/')
       .then(res => res.json())
       .then(data => setApplications(data))
       .catch(err => console.error(err));

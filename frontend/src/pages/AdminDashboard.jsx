@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   const fetchApplications = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/applications/');
+      const response = await fetch('https://scholarcore-india.onrender.com/applications/');
       if (response.ok) {
         const data = await response.json();
         setApplications(data);
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
   const fetchMeritList = async () => {
     setIsMeritLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/admin/generate-merit-list');
+      const response = await fetch('https://scholarcore-india.onrender.com/api/admin/generate-merit-list');
       if (response.ok) {
         const data = await response.json();
         setMeritList(data.merit_list);
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
   const fetchForecast = async () => {
     setIsForecastLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/admin/forecast-budget');
+      const response = await fetch('https://scholarcore-india.onrender.com/api/admin/forecast-budget');
       if (response.ok) {
         const data = await response.json();
         setForecastData(data);
@@ -97,7 +97,7 @@ const AdminDashboard = () => {
     if (reqCaste) docs.push('Caste Certificate');
     
     try {
-      const res = await fetch('http://localhost:8000/api/admin/schemes', {
+      const res = await fetch('https://scholarcore-india.onrender.com/api/admin/schemes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
