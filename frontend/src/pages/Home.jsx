@@ -13,21 +13,21 @@ const Home = () => {
     <div className="w-full bg-white min-h-screen relative overflow-x-hidden font-sans">
       
       {/* NSP Style Hero Carousel */}
-      <div className="relative w-full h-[320px] bg-gradient-to-r from-gray-900 to-gray-700 overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-[320px] bg-gradient-to-r from-blue-50 via-white to-indigo-50 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:20px_20px]"></div>
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070" alt="Students" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" />
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070" alt="Students" className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-multiply" />
         
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 tracking-tight shadow-sm drop-shadow-md">{t('empowering')}</h1>
-          <p className="text-lg md:text-xl text-gray-200 font-medium tracking-wide drop-shadow">{t('lifelong')}</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-3 tracking-tight drop-shadow-sm">{t('empowering')}</h1>
+          <p className="text-lg md:text-xl text-blue-700 font-medium tracking-wide max-w-2xl mx-auto">{t('lifelong')}</p>
         </div>
         
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-gray-900"><ChevronRight className="rotate-180" size={32}/></button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-gray-900"><ChevronRight size={32}/></button>
+        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition"><ChevronRight className="rotate-180" size={32}/></button>
+        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition"><ChevronRight size={32}/></button>
       </div>
 
       {/* NSP Style Latest Updates Marquee */}
-      <div id="announcements" className="bg-[#1E5642] text-gray-900 flex items-center shadow-md scroll-mt-24">
+      <div id="announcements" className="bg-blue-600 text-white flex items-center shadow-md scroll-mt-24 font-medium">
         <div className="bg-[#C85237] font-bold px-6 py-2 whitespace-nowrap z-10 relative">
           LATEST UPDATES
           <div className="absolute right-[-10px] top-0 w-0 h-0 border-t-[18px] border-t-transparent border-l-[10px] border-l-[#C85237] border-b-[18px] border-b-transparent"></div>
@@ -483,7 +483,7 @@ const Home = () => {
       
 
       {/* NSP Style FAQ & Help Desk Section */}
-      <div id="faqs" className="w-full bg-gray-50 border-t border-gray-200 py-16 mt-8 scroll-mt-20">
+      <div id="faqs" className="w-full bg-white border-t border-gray-200 py-16 mt-8 scroll-mt-20">
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
           
           {/* FAQ Section */}
