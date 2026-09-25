@@ -1,80 +1,134 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Lock } from 'lucide-react';
+import { Lock, UserCircle, Building2, ShieldCheck, AlertCircle } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('STUDENT');
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch('http://localhost:8000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-      if (res.ok) {
-        const data = await res.json();
-        localStorage.setItem('token', data.access_token);
-        navigate('/application');
+    setError('');
+
+    // Simulate Network Request
+    setTimeout(() => {
+      // Mock Authentication Routing Logic
+      if (role === 'ADMIN') {
+        if (email.includes('admin') || email.includes('mota')) {
+          localStorage.setItem('userRole', 'ADMIN');
+          navigate('/admin');
+        } else {
+          setError('Invalid Admin credentials. Use admin@mota.gov.in');
+        }
+      } else if (role === 'INSTITUTE') {
+        if (email.includes('ino') || email.includes('institute')) {
+          localStorage.setItem('userRole', 'INSTITUTE');
+          navigate('/institute');
+        } else {
+          setError('Invalid Institute credentials. Use ino@institute.edu');
+        }
       } else {
-        // Fallback for hackathon demo
-        navigate('/application');
+        // Default to Student / Applicant
+        localStorage.setItem('userRole', 'STUDENT');
+        // A student would typically go to their dashboard first
+        navigate('/applicant');
       }
-    } catch {
-      navigate('/application');
-    }
+    }, 600);
   };
 
   return (
-    <div className="max-w-sm mx-auto py-24 px-6">
-       <div className="bg-white shadow-xl rounded-lg p-8 border-t-4 border-[#112233]">
-         <div className="flex justify-center mb-6">
-           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-             <Lock size={32} className="text-gray-600" />
-           </div>
-         </div>
-         <h2 className="text-2xl font-bold text-center text-gray-900 mb-8">Applicant Login</h2>
+    <div className="w-full bg-gray-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+       <div className="max-w-md w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
          
-         <form onSubmit={handleLogin} className="space-y-5">
-           <div>
-             <label className="block text-sm font-medium text-gray-700 mb-1">Application ID / Email</label>
-             <input required type="text" value={email} onChange={e=>setEmail(e.target.value)} className="w-full border-gray-300 rounded p-2.5 border focus:ring-blue-500 focus:border-blue-500" />
+         {/* Header */}
+         <div className="bg-[#1E5642] px-6 py-6 text-center relative">
+           <div className="absolute inset-0 bg-black opacity-10"></div>
+           <div className="relative z-10 flex justify-center mb-3">
+             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-md border-4 border-[#164332]">
+               {role === 'STUDENT' && <UserCircle size={32} className="text-[#1E5642]" />}
+               {role === 'INSTITUTE' && <Building2 size={32} className="text-[#1E5642]" />}
+               {role === 'ADMIN' && <ShieldCheck size={32} className="text-[#1E5642]" />}
+             </div>
            </div>
-           <div>
-             <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-             <input required type="password" value={password} onChange={e=>setPassword(e.target.value)} className="w-full border-gray-300 rounded p-2.5 border focus:ring-blue-500 focus:border-blue-500" />
-           </div>
-           <button type="submit" className="w-full bg-[#1E5642] text-white font-bold py-3 rounded shadow hover:bg-opacity-90 transition mt-4">
-             Login
-           </button>
-         </form>
-
-         <div className="relative mt-8 mb-6">
-           <div className="absolute inset-0 flex items-center">
-             <div className="w-full border-t border-gray-300"></div>
-           </div>
-           <div className="relative flex justify-center text-sm">
-             <span className="px-2 bg-white text-gray-500">Or authenticate with</span>
-           </div>
+           <h2 className="relative z-10 text-2xl font-extrabold text-white tracking-tight">
+             Central Login Portal
+           </h2>
+           <p className="relative z-10 text-sm text-green-100 mt-1">Authenticate to access ScholarCore India</p>
          </div>
+         
+         <div className="p-8">
+           {/* Role Selector Tabs */}
+           <div className="flex bg-gray-100 p-1 rounded-lg mb-8">
+             <button type="button" onClick={() => setRole('STUDENT')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'STUDENT' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+               STUDENT
+             </button>
+             <button type="button" onClick={() => setRole('INSTITUTE')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'INSTITUTE' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+               INSTITUTE
+             </button>
+             <button type="button" onClick={() => setRole('ADMIN')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'ADMIN' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+               MINISTRY
+             </button>
+           </div>
 
-         <button 
-           onClick={() => {
-             alert('Simulating redirect to DigiLocker / MeriPehchaan India Stack Auth...');
-             navigate('/applicant');
-           }}
-           className="w-full flex items-center justify-center space-x-3 bg-white border-2 border-[#187884] text-[#187884] font-bold py-2.5 rounded shadow-sm hover:bg-[#187884] hover:text-white transition group"
-         >
-           <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/DigiLocker_logo.svg" alt="DigiLocker" className="h-6 opacity-80 group-hover:opacity-100 transition-opacity bg-white p-0.5 rounded" />
-           <span>MeriPehchaan (DigiLocker)</span>
-         </button>
+           {error && (
+             <div className="mb-6 flex items-start space-x-2 bg-red-50 text-red-700 p-3 rounded-md text-sm border border-red-100">
+               <AlertCircle size={18} className="mt-0.5 flex-shrink-0" />
+               <p>{error}</p>
+             </div>
+           )}
 
-         <div className="mt-6 text-center">
-           <button onClick={() => navigate('/register')} className="text-sm text-blue-600 hover:underline font-semibold">New Student Registration</button>
+           <form onSubmit={handleLogin} className="space-y-6">
+             <div>
+               <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+                 {role === 'STUDENT' ? 'OTR / Email Address' : 'Official Email ID'}
+               </label>
+               <input 
+                 required 
+                 type="text" 
+                 value={email} 
+                 onChange={e=>setEmail(e.target.value)} 
+                 placeholder={role === 'STUDENT' ? 'student@gmail.com' : role === 'INSTITUTE' ? 'ino@institute.edu' : 'admin@mota.gov.in'}
+                 className="w-full bg-gray-50 border-gray-300 rounded-lg p-3 text-sm border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none transition" 
+               />
+             </div>
+             <div>
+               <div className="flex justify-between items-center mb-1.5">
+                 <label className="block text-sm font-semibold text-gray-700">Password</label>
+                 <a href="#" className="text-xs text-blue-600 hover:underline font-medium">Forgot Password?</a>
+               </div>
+               <input 
+                 required 
+                 type="password" 
+                 value={password} 
+                 onChange={e=>setPassword(e.target.value)} 
+                 placeholder="••••••••"
+                 className="w-full bg-gray-50 border-gray-300 rounded-lg p-3 text-sm border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none transition" 
+               />
+             </div>
+
+             <div className="flex items-center">
+                <input id="remember" type="checkbox" className="h-4 w-4 text-[#1E5642] border-gray-300 rounded focus:ring-[#1E5642]" />
+                <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">Remember me securely</label>
+             </div>
+
+             <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-[#1E5642] hover:bg-[#164332] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5642] transition">
+               Secure Login
+             </button>
+           </form>
+           
+           {/* Demo Credentials Box */}
+           <div className="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-4">
+             <h4 className="text-xs font-bold text-blue-800 uppercase tracking-wide mb-2">Hackathon Demo Credentials</h4>
+             <ul className="text-xs text-blue-700 space-y-1 font-medium">
+               <li><span className="font-bold">Student:</span> student@gmail.com (pwd: any)</li>
+               <li><span className="font-bold">Institute:</span> ino@institute.edu (pwd: any)</li>
+               <li><span className="font-bold">Ministry:</span> admin@mota.gov.in (pwd: any)</li>
+             </ul>
+           </div>
+
          </div>
        </div>
     </div>
