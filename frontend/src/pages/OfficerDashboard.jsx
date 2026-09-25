@@ -3,7 +3,7 @@ import {
   Users, CheckCircle, Clock, AlertTriangle, FileText, CheckSquare, 
   XSquare, Download, Bell, Activity, Sliders, TrendingUp, PieChart as PieChartIcon
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { pendingApplications } from '../data/mockData';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
@@ -20,7 +20,8 @@ const OfficerDashboard = () => {
 
   const navigate = useNavigate();
   const userRole = localStorage.getItem('_sch_role') ? safeDecode('_sch_role', '') : 'OFFICER'; // 'MINISTRY' or 'OFFICER'
-  const [activeTab, setActiveTab] = useState('ANALYTICS'); // NEW: Added Analytics tab
+  const [searchParams] = useSearchParams();
+  const activeTab = (searchParams.get('tab') || 'ANALYTICS').toUpperCase();
 
   // Mock Data for Charts
   const velocityData = [
@@ -88,26 +89,7 @@ const OfficerDashboard = () => {
       <main className="flex-1 max-w-[1400px] w-full mx-auto p-6 flex flex-col md:flex-row gap-6">
         
         {/* Sidebar */}
-        <div className="w-full md:w-64 flex-shrink-0">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden sticky top-6">
-            <div className="p-4 bg-gray-50 border-b border-gray-200">
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider">Control Panel</p>
-            </div>
-            <nav className="flex flex-col">
-              <button onClick={() => setActiveTab('ANALYTICS')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'ANALYTICS' ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-700' : 'text-gray-600 hover:bg-gray-50'}`}>
-                <Activity size={18} /><span>Executive Analytics</span>
-              </button>
-              <button onClick={() => setActiveTab('VERIFICATION')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'VERIFICATION' ? 'bg-[var(--color-mota-forest)] text-white border-l-4 border-green-800' : 'text-gray-600 hover:bg-gray-50'}`}>
-                <CheckSquare size={18} /><span>Application Verification</span>
-              </button>
-              
-              <button onClick={() => setActiveTab('AUDIT')} className={`flex items-center space-x-3 p-4 text-sm font-medium transition ${activeTab === 'AUDIT' ? 'bg-[var(--color-mota-forest)] text-white border-l-4 border-green-800' : 'text-gray-600 hover:bg-gray-50'}`}>
-                <FileText size={18} /><span>Audit Logs & Appeals</span>
-              </button>
-              
-            </nav>
-          </div>
-        </div>
+        
 
         {/* Content Area */}
         <div className="flex-1 space-y-6">

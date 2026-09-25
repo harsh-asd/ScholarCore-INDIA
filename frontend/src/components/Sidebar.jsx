@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, FileText, UploadCloud, Activity, AlertTriangle, Building2, ShieldCheck, BarChart3, LogOut } from 'lucide-react';
+import { LayoutDashboard, FileText, UploadCloud, Activity, AlertTriangle, Building2, ShieldCheck, BarChart3, LogOut, CheckSquare, Sliders, Activity } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -25,7 +25,15 @@ const Sidebar = () => {
   const renderLinks = (items) => (
     <ul>
       {items.map((item, index) => {
-        const isActive = location.pathname === item.path;
+        const urlParams = new URLSearchParams(location.search);
+        const itemParams = new URLSearchParams(item.path.split('?')[1] || '');
+        const currentTab = urlParams.get('tab') || (location.pathname.startsWith('/admin') || location.pathname.startsWith('/officer') ? 'analytics' : null);
+        const itemTab = itemParams.get('tab') || (item.path.startsWith('/admin') || item.path.startsWith('/officer') ? 'analytics' : null);
+        
+        const isPathMatch = location.pathname === item.path.split('?')[0];
+        const isTabMatch = currentTab === itemTab;
+        const isActive = isPathMatch && isTabMatch;
+
         return (
           <li key={index}>
             <Link
@@ -82,7 +90,11 @@ const Sidebar = () => {
           </div>
           <div className="py-2 flex-grow">
             {renderLinks([
-              { name: 'Executive Dashboard', path: '/admin', icon: <ShieldCheck size={18} /> }
+              { name: 'Executive Analytics', path: '/admin?tab=analytics', icon: <Activity size={18} /> },
+              { name: 'Application Verification', path: '/admin?tab=verification', icon: <CheckSquare size={18} /> },
+              { name: 'Dynamic Rule Engine', path: '/admin?tab=rules', icon: <Sliders size={18} /> },
+              { name: 'Audit Logs & Appeals', path: '/admin?tab=audit', icon: <FileText size={18} /> },
+              { name: 'Merit List Generation', path: '/admin?tab=merit', icon: <FileText size={18} /> }
             ])}
           </div>
         </>
@@ -95,7 +107,9 @@ const Sidebar = () => {
           </div>
           <div className="py-2 flex-grow">
             {renderLinks([
-              { name: 'Officer Dashboard', path: '/officer', icon: <ShieldCheck size={18} /> }
+              { name: 'Analytics', path: '/officer?tab=analytics', icon: <Activity size={18} /> },
+              { name: 'Application Verification', path: '/officer?tab=verification', icon: <CheckSquare size={18} /> },
+              { name: 'Audit Logs & Appeals', path: '/officer?tab=audit', icon: <FileText size={18} /> }
             ])}
           </div>
         </>
