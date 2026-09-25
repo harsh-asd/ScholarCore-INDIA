@@ -158,7 +158,7 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">OTR</h3>
               <p className="text-sm text-gray-700 mb-3">One Time Registration (OTR) is a unique 14-digit number issued based on Aadhaar...</p>
-              <button onClick={() => navigate('/login')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
+              <button onClick={() => navigate('/login?role=STUDENT')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
             </div>
 
             {/* 3. Apply For Scholarship */}
@@ -166,7 +166,7 @@ const Home = () => {
               <UserPlus size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Apply For Scholarship</h3>
               <p className="text-sm text-gray-700 mb-4">Login with your OTR ID and PASSWORD to fill and check status of your Fresh and Renewal Scholarship application.</p>
-              <button onClick={() => navigate('/login')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
+              <button onClick={() => navigate('/login?role=STUDENT')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
             </div>
 
             {/* 4. Schemes on NSP */}
@@ -174,7 +174,7 @@ const Home = () => {
               <FileText size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Schemes on Portal</h3>
               <p className="text-sm text-gray-700 mb-4">List of scholarship schemes with specification, FAQ and scheme opening and closing timeline.</p>
-              <button onClick={() => {navigate('/login')}} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Schemes on Portal</button>
+              <button onClick={() => {navigate('/login?role=STUDENT')}} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Schemes on Portal</button>
             </div>
 
             {/* 5. Scholarship Eligibility */}
@@ -190,7 +190,7 @@ const Home = () => {
               <Activity size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Application Status</h3>
               <p className="text-sm text-gray-700 mb-4">Track your real-time application status For Academic Year 2026-27.</p>
-              <button onClick={() => navigate('/login')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
+              <button onClick={() => navigate('/login?role=STUDENT')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
             </div>
 
             {/* 7. Track Your Payment */}
@@ -268,7 +268,7 @@ const Home = () => {
               <LogIn size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Login</h3>
               <p className="text-sm text-gray-700 mb-4">Institute Nodal Officers (HoIs/INOs) can login using their user id and password.</p>
-              <button onClick={() => navigate('/admin')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Login</button>
+              <button onClick={() => navigate('/login?role=ADMIN')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Login</button>
             </div>
 
             {/* 4. How To Fill Registration Form */}
@@ -445,7 +445,7 @@ const Home = () => {
                 <GraduationCap size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Candidate Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Fellowship Candidates</p>
-                <button onClick={() => navigate('/login')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Candidate Login</button>
+                <button onClick={() => navigate('/login?role=STUDENT')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Candidate Login</button>
              </div>
 
              {/* 2. Institute Login */}
@@ -453,7 +453,7 @@ const Home = () => {
                 <Building2 size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Institute Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Fellowship Institutes</p>
-                <button onClick={() => navigate('/institute')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Institute Login</button>
+                <button onClick={() => navigate('/login?role=INSTITUTE')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Institute Login</button>
              </div>
 
              {/* 3. Ministry Login */}
@@ -461,7 +461,7 @@ const Home = () => {
                 <Landmark size={56} className="text-[#D49A36] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Ministry Login</h3>
                 <p className="text-sm text-gray-700 mb-4">Login for Ministry Officials handling fellowships</p>
-                <button onClick={() => navigate('/admin')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Ministry Login</button>
+                <button onClick={() => navigate('/login?role=ADMIN')} className="text-black font-bold border-b border-black hover:text-[#D49A36]">Ministry Login</button>
              </div>
 
              {/* 4. Announcements */}

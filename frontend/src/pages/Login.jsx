@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Lock, UserCircle, Building2, ShieldCheck, AlertCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Lock, UserCircle, Building2, ShieldCheck, AlertCircle, ArrowLeft } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const urlRole = searchParams.get('role');
+  
+  // Default to STUDENT, but override if urlRole exists
+  const [role, setRole] = useState(urlRole || 'STUDENT');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [role, setRole] = useState('STUDENT');
+
+  // If a role was passed in the URL, we lock the UI to that role
+  const isLocked = !!urlRole;
+
+  useEffect(() => {
+    if (urlRole && ['STUDENT', 'INSTITUTE', 'ADMIN'].includes(urlRole)) {
+      setRole(urlRole);
+    }
+  }, [urlRole]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,7 +28,6 @@ const Login = () => {
 
     // Simulate Network Request
     setTimeout(() => {
-      // Mock Authentication Routing Logic
       if (role === 'ADMIN') {
         if (email.includes('admin') || email.includes('mota')) {
           localStorage.setItem('userRole', 'ADMIN');
@@ -31,16 +43,20 @@ const Login = () => {
           setError('Invalid Institute credentials. Use ino@institute.edu');
         }
       } else {
-        // Default to Student / Applicant
         localStorage.setItem('userRole', 'STUDENT');
-        // A student would typically go to their dashboard first
         navigate('/applicant');
       }
     }, 600);
   };
 
   return (
-    <div className="w-full bg-gray-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-gray-50 min-h-[85vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative">
+       
+       {/* Back Button */}
+       <button onClick={() => navigate('/')} className="absolute top-8 left-8 flex items-center text-gray-600 hover:text-[#1E5642] font-semibold transition bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
+         <ArrowLeft size={18} className="mr-2" /> Back to Portal
+       </button>
+
        <div className="max-w-md w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
          
          {/* Header */}
@@ -54,24 +70,36 @@ const Login = () => {
              </div>
            </div>
            <h2 className="relative z-10 text-2xl font-extrabold text-white tracking-tight">
-             Central Login Portal
+             {role === 'STUDENT' && 'Candidate Login'}
+             {role === 'INSTITUTE' && 'Institute Nodal Officer'}
+             {role === 'ADMIN' && 'Ministry Admin Login'}
            </h2>
            <p className="relative z-10 text-sm text-green-100 mt-1">Authenticate to access ScholarCore India</p>
          </div>
          
          <div className="p-8">
-           {/* Role Selector Tabs */}
-           <div className="flex bg-gray-100 p-1 rounded-lg mb-8">
-             <button type="button" onClick={() => setRole('STUDENT')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'STUDENT' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
-               STUDENT
-             </button>
-             <button type="button" onClick={() => setRole('INSTITUTE')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'INSTITUTE' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
-               INSTITUTE
-             </button>
-             <button type="button" onClick={() => setRole('ADMIN')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'ADMIN' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
-               MINISTRY
-             </button>
-           </div>
+           
+           {/* Only show role tabs if NOT locked by URL */}
+           {!isLocked && (
+             <div className="flex bg-gray-100 p-1 rounded-lg mb-8">
+               <button type="button" onClick={() => setRole('STUDENT')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'STUDENT' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+                 STUDENT
+               </button>
+               <button type="button" onClick={() => setRole('INSTITUTE')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'INSTITUTE' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+                 INSTITUTE
+               </button>
+               <button type="button" onClick={() => setRole('ADMIN')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'ADMIN' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
+                 MINISTRY
+               </button>
+             </div>
+           )}
+
+           {isLocked && (
+             <div className="mb-6 flex items-center justify-center space-x-2 bg-green-50 text-green-800 p-2 rounded-md text-xs font-bold border border-green-200">
+               <Lock size={14} />
+               <span>Secured {role} Gateway</span>
+             </div>
+           )}
 
            {error && (
              <div className="mb-6 flex items-start space-x-2 bg-red-50 text-red-700 p-3 rounded-md text-sm border border-red-100">
@@ -114,8 +142,8 @@ const Login = () => {
                 <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">Remember me securely</label>
              </div>
 
-             <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-[#1E5642] hover:bg-[#164332] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5642] transition">
-               Secure Login
+             <button type="submit" className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-[#1E5642] hover:bg-[#164332] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1E5642] transition">
+               <Lock size={16} className="mr-2 opacity-80" /> Secure Login
              </button>
            </form>
            
@@ -123,9 +151,9 @@ const Login = () => {
            <div className="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-4">
              <h4 className="text-xs font-bold text-blue-800 uppercase tracking-wide mb-2">Hackathon Demo Credentials</h4>
              <ul className="text-xs text-blue-700 space-y-1 font-medium">
-               <li><span className="font-bold">Student:</span> student@gmail.com (pwd: any)</li>
-               <li><span className="font-bold">Institute:</span> ino@institute.edu (pwd: any)</li>
-               <li><span className="font-bold">Ministry:</span> admin@mota.gov.in (pwd: any)</li>
+               {role === 'STUDENT' && <li><span className="font-bold">Student:</span> student@gmail.com (pwd: any)</li>}
+               {role === 'INSTITUTE' && <li><span className="font-bold">Institute:</span> ino@institute.edu (pwd: any)</li>}
+               {role === 'ADMIN' && <li><span className="font-bold">Ministry:</span> admin@mota.gov.in (pwd: any)</li>}
              </ul>
            </div>
 
