@@ -48,16 +48,17 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    localStorage.setItem('studentName', name);
+    localStorage.setItem('studentEmail', email);
     try {
       await fetch('https://scholarcore-india.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password })
       });
-      // Redirect to login after registration
-      navigate('/login');
+      navigate('/login?role=STUDENT');
     } catch {
-      navigate('/login');
+      navigate('/login?role=STUDENT');
     }
   };
 

@@ -142,7 +142,7 @@ const ApplicantDashboard = () => {
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-2xl font-bold text-gray-800">John Doe</h2>
-              <p className="text-sm text-gray-500 mb-4">Application ID: <span className="font-mono text-gray-700 font-medium">MOTA-2026-892</span></p>
+              <p className="text-sm text-gray-500 mb-4">Application ID: <span className="font-mono text-gray-700 font-medium">MOTA-{new Date().getFullYear()}-{Math.floor(1000 + Math.random() * 9000)}</span></p>
             </div>
             <button onClick={() => alert('Generating PDF Receipt with Govt Watermark...')} className="hidden sm:flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 px-4 py-2 rounded shadow-sm text-sm font-semibold transition">
               <FileText size={16} />
