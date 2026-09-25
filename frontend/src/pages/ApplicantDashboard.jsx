@@ -17,6 +17,10 @@ const ApplicantDashboard = () => {
   const [status, setStatus] = useState('PENDING'); // PENDING, LOADING, APPROVED, REJECTED, MANUAL_REVIEW
   const [errorMsg, setErrorMsg] = useState(null);
   const [step, setStep] = useState(0);
+  const [showESign, setShowESign] = useState(false);
+  const [eSignStep, setESignStep] = useState(0);
+  const [isScanningQuality, setIsScanningQuality] = useState(false);
+  const [qualityScore, setQualityScore] = useState(null);
   
   // Eligibility Matcher State
   const [matchIncome, setMatchIncome] = useState('');
