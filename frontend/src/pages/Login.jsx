@@ -158,8 +158,8 @@ const Login = () => {
                {role === 'INSTITUTE' && <li><span className="font-bold">Institute:</span> ino@institute.edu (pwd: any)</li>}
                               {role === 'ADMIN' && (
                  <>
-                   <li><span className="font-bold">Ministry Executive:</span> ministry@mota.gov.in</li>
-                   <li><span className="font-bold">Nodal Officer:</span> officer@mota.gov.in</li>
+                   <li><span className="font-bold">Ministry Executive:</span> ministry@mota.gov.in <span className="opacity-75">(pwd: any)</span></li>
+                   <li><span className="font-bold">Nodal Officer:</span> officer@mota.gov.in <span className="opacity-75">(pwd: any)</span></li>
                  </>
                )}
              </ul>
