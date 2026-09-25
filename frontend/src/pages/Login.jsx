@@ -225,6 +225,29 @@ const Login = () => {
                />
              </div>
 
+               {/* CAPTCHA BLOCK */}
+               <div className="bg-gray-50 p-4 border border-gray-200 rounded-lg">
+                 <label className="block text-sm font-semibold text-gray-700 mb-2">Security Captcha</label>
+                 <div className="flex items-center space-x-4 mb-3">
+                   <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-gray-300 w-32 h-10 flex items-center justify-center rounded overflow-hidden select-none relative">
+                     <div className="absolute inset-0 opacity-20" style={ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '8px 8px' }></div>
+                     <span className="text-xl font-bold font-mono tracking-[0.2em] text-gray-800 italic transform -skew-x-12 relative z-10">{generatedCaptcha}</span>
+                   </div>
+                   <button type="button" onClick={() => alert("Captcha Refreshed!")} className="text-gray-500 hover:text-[#1E5642] transition p-1 bg-white border border-gray-300 rounded shadow-sm" title="Refresh Captcha">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path></svg>
+                   </button>
+                 </div>
+                 <input 
+                   required 
+                   type="text" 
+                   value={captcha} 
+                   onChange={e=>setCaptcha(e.target.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase())} 
+                   placeholder="Enter captcha text"
+                   className="w-full bg-white border-gray-300 rounded p-2.5 text-sm border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none transition uppercase font-mono tracking-widest" 
+                 />
+               </div>
+
+
              <div className="flex items-center">
                 <input id="remember" type="checkbox" className="h-4 w-4 text-[#1E5642] border-gray-300 rounded focus:ring-[#1E5642]" />
                 <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">Remember me securely</label>
