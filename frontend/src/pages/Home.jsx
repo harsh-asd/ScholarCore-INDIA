@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ChevronRight, GraduationCap, Building2, Users, UsersRound, Award, Megaphone, CheckCircle, ArrowRight, MessageCircle, ArrowLeft, UserPlus, FileText, ClipboardCheck, Activity, CreditCard, MapPin, Fingerprint, QrCode, FileEdit, LogIn, HelpCircle, Search, PlusCircle, Globe, UserCog, Scale, BarChart3, ClipboardList, Headset, LifeBuoy, Landmark } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
@@ -18,26 +18,26 @@ const Home = () => {
         <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070" alt="Students" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" />
         
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight shadow-sm drop-shadow-md">{t('empowering')}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 tracking-tight shadow-sm drop-shadow-md">{t('empowering')}</h1>
           <p className="text-lg md:text-xl text-gray-200 font-medium tracking-wide drop-shadow">{t('lifelong')}</p>
         </div>
         
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-white"><ChevronRight className="rotate-180" size={32}/></button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-white"><ChevronRight size={32}/></button>
+        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-gray-900"><ChevronRight className="rotate-180" size={32}/></button>
+        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-20 hover:bg-opacity-40 p-2 text-gray-900"><ChevronRight size={32}/></button>
       </div>
 
       {/* NSP Style Latest Updates Marquee */}
-      <div id="announcements" className="bg-[#1E5642] text-white flex items-center shadow-md scroll-mt-24">
+      <div id="announcements" className="bg-[#1E5642] text-gray-900 flex items-center shadow-md scroll-mt-24">
         <div className="bg-[#C85237] font-bold px-6 py-2 whitespace-nowrap z-10 relative">
           LATEST UPDATES
           <div className="absolute right-[-10px] top-0 w-0 h-0 border-t-[18px] border-t-transparent border-l-[10px] border-l-[#C85237] border-b-[18px] border-b-transparent"></div>
         </div>
         <div className="overflow-hidden whitespace-nowrap pl-6 py-2 flex-1">
           <marquee behavior="scroll" direction="left" scrollamount="6" className="text-sm font-medium tracking-wide" onMouseOver={(e) => e.target.stop()} onMouseOut={(e) => e.target.start()}>
-            <span className="mx-8">🔴 One Time Registration (OTR) is mandatory for Academic Year 2026-27.</span>
-            <span className="mx-8">🔴 Ministry of Tribal Affairs extends National Fellowship deadline to 31st October 2026.</span>
-            <span className="mx-8">🔴 Aadhaar authentication is compulsory for Direct Benefit Transfer (DBT).</span>
-            <span className="mx-8">🔴 INO verification process guidelines updated for the new term.</span>
+            <span className="mx-8">ðŸ”´ One Time Registration (OTR) is mandatory for Academic Year 2026-27.</span>
+            <span className="mx-8">ðŸ”´ Ministry of Tribal Affairs extends National Fellowship deadline to 31st October 2026.</span>
+            <span className="mx-8">ðŸ”´ Aadhaar authentication is compulsory for Direct Benefit Transfer (DBT).</span>
+            <span className="mx-8">ðŸ”´ INO verification process guidelines updated for the new term.</span>
           </marquee>
         </div>
       </div>
@@ -46,31 +46,31 @@ const Home = () => {
       {/* Refined MoTA Action Cards Row */}
       <div className="w-full bg-white shadow-sm border-b border-gray-100">
         <div className="flex flex-wrap w-full">
-          <div onClick={() => setActiveView('students')} className={`flex-1 min-w-[200px] h-32 text-white flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#164332] ${activeView === 'students' ? 'bg-[#164332]' : 'bg-[#1E5642] hover:bg-[#164332]'}`}>
+          <div onClick={() => setActiveView('students')} className={`flex-1 min-w-[200px] h-32 text-gray-900 flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#164332] ${activeView === 'students' ? 'bg-[#164332]' : 'bg-[#1E5642] hover:bg-[#164332]'}`}>
             <div className="flex flex-col items-center space-y-2">
                <GraduationCap size={32} strokeWidth={1.5} />
                <span className="text-xl font-semibold tracking-wide">{t('students_card')}</span>
             </div>
           </div>
-          <div onClick={() => setActiveView('institutions')} className={`flex-1 min-w-[200px] h-32 text-white flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#A6432D] ${activeView === 'institutions' ? 'bg-[#A6432D]' : 'bg-[#C85237] hover:bg-[#A6432D]'}`}>
+          <div onClick={() => setActiveView('institutions')} className={`flex-1 min-w-[200px] h-32 text-gray-900 flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#A6432D] ${activeView === 'institutions' ? 'bg-[#A6432D]' : 'bg-[#C85237] hover:bg-[#A6432D]'}`}>
             <div className="flex flex-col items-center space-y-2">
                <Building2 size={32} strokeWidth={1.5} />
                <span className="text-xl font-semibold tracking-wide">{t('institutions')}</span>
             </div>
           </div>
-          <div onClick={() => setActiveView('officers')} className={`flex-1 min-w-[200px] h-32 text-white flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#2A3749] ${activeView === 'officers' ? 'bg-[#2A3749]' : 'bg-[#3B4B61] hover:bg-[#2A3749]'}`}>
+          <div onClick={() => setActiveView('officers')} className={`flex-1 min-w-[200px] h-32 text-gray-900 flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#2A3749] ${activeView === 'officers' ? 'bg-[#2A3749]' : 'bg-[#3B4B61] hover:bg-[#2A3749]'}`}>
             <div className="flex flex-col items-center space-y-2">
                <Users size={32} strokeWidth={1.5} />
                <span className="text-xl font-semibold tracking-wide">{t('officers')}</span>
             </div>
           </div>
-          <div onClick={() => setActiveView('public')} className={`flex-1 min-w-[200px] h-32 text-white flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#125D67] ${activeView === 'public' ? 'bg-[#125D67]' : 'bg-[#187884] hover:bg-[#125D67]'}`}>
+          <div onClick={() => setActiveView('public')} className={`flex-1 min-w-[200px] h-32 text-gray-900 flex flex-col items-center justify-center cursor-pointer transition duration-300 border-r border-[#125D67] ${activeView === 'public' ? 'bg-[#125D67]' : 'bg-[#187884] hover:bg-[#125D67]'}`}>
             <div className="flex flex-col items-center space-y-2">
                <UsersRound size={32} strokeWidth={1.5} />
                <span className="text-xl font-semibold tracking-wide">{t('public')}</span>
             </div>
           </div>
-          <div onClick={() => setActiveView('fellowship')} className={`flex-1 min-w-[200px] h-32 text-white flex flex-col items-center justify-center cursor-pointer transition duration-300 ${activeView === 'fellowship' ? 'bg-[#B3802C]' : 'bg-[#D49A36] hover:bg-[#B3802C]'}`}>
+          <div onClick={() => setActiveView('fellowship')} className={`flex-1 min-w-[200px] h-32 text-gray-900 flex flex-col items-center justify-center cursor-pointer transition duration-300 ${activeView === 'fellowship' ? 'bg-[#B3802C]' : 'bg-[#D49A36] hover:bg-[#B3802C]'}`}>
             <div className="flex flex-col items-center space-y-2">
                <Award size={32} strokeWidth={1.5} />
                <span className="text-xl font-semibold tracking-wide">{t('fellowship')}</span>
@@ -153,7 +153,7 @@ const Home = () => {
                  </div>
                  <div className="border-2 border-black rounded flex flex-col items-center bg-white p-1">
                     <QrCode size={40} className="text-black" />
-                    <span className="text-[7px] font-bold bg-black text-white w-full text-center mt-1 uppercase">NSP OTR App</span>
+                    <span className="text-[7px] font-bold bg-black text-gray-900 w-full text-center mt-1 uppercase">NSP OTR App</span>
                  </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">OTR</h3>
@@ -249,7 +249,7 @@ const Home = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Announcements</h3>
               <ul className="space-y-3 list-disc pl-4 text-sm text-[#2F6955] mb-4 leading-relaxed">
                 <li>The Portal is open for Academic year 2026-27 from 1'st June 2026 onwards.</li>
-                <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026–27, as per scheme eligibility criteria.</li>
+                <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026â€“27, as per scheme eligibility criteria.</li>
                 <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Head of Institutes (HoIs) and Institute Nodal Officers (INOs) are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => document.getElementById('faqs')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
               </ul>
               <Link to="#" onClick={() => document.getElementById('announcements')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#C85237]">View all</Link>
@@ -324,7 +324,7 @@ const Home = () => {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Announcements</h3>
               <ul className="space-y-3 list-disc pl-4 text-sm text-[#2F6955] mb-4 leading-relaxed">
                 <li>The Portal is open for Academic year 2026-27 from 1'st June 2026 onwards.</li>
-                <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026–27, as per scheme eligibility criteria.</li>
+                <li>Students may apply for one merit-based scholarship scheme and one or more welfare-based scholarship schemes from AY 2026â€“27, as per scheme eligibility criteria.</li>
                 <li>From AY 2024-25 One Time Registration (OTR) no. is required to fill the scholarship application. Ministry/Department/Zone/State/District level Nodal Officers are advised to inform the students to register for OTR. For detailed guidelines on OTR please visit <Link to="#" onClick={() => document.getElementById('faqs')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold hover:underline">OTR FAQs</Link></li>
               </ul>
               <Link to="#" onClick={() => document.getElementById('announcements')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">View all</Link>
@@ -544,13 +544,13 @@ const Home = () => {
           </div>
           
           {/* Help Desk Section */}
-          <div id="helpdesk" className="bg-[#1E5642] rounded-lg shadow-sm border border-[#164332] p-8 text-white relative overflow-hidden scroll-mt-20">
+          <div id="helpdesk" className="bg-[#1E5642] rounded-lg shadow-sm border border-[#164332] p-8 text-gray-900 relative overflow-hidden scroll-mt-20">
              {/* Decorative Background Icon */}
-             <Headset className="absolute -bottom-6 -right-6 text-white opacity-10 w-48 h-48" />
+             <Headset className="absolute -bottom-6 -right-6 text-gray-900 opacity-10 w-48 h-48" />
              
              <div className="flex items-center space-x-3 mb-6 relative z-10">
               <Headset size={32} className="text-[#D49A36]" />
-              <h2 className="text-2xl font-bold text-white">Central Help Desk</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Central Help Desk</h2>
             </div>
             
             <p className="text-gray-200 text-sm mb-8 leading-relaxed relative z-10">
@@ -560,7 +560,7 @@ const Home = () => {
             <div className="space-y-6 relative z-10">
                <div className="flex items-start space-x-4 bg-[#164332] p-4 rounded-md border border-[#113224]">
                  <div className="bg-[#D49A36] p-2 rounded-full">
-                   <Megaphone size={20} className="text-white" />
+                   <Megaphone size={20} className="text-gray-900" />
                  </div>
                  <div>
                    <h4 className="text-sm text-gray-300 font-semibold mb-1">Toll Free Helpline</h4>
@@ -570,7 +570,7 @@ const Home = () => {
                
                <div className="flex items-start space-x-4 bg-[#164332] p-4 rounded-md border border-[#113224]">
                  <div className="bg-[#D49A36] p-2 rounded-full">
-                   <MessageCircle size={20} className="text-white" />
+                   <MessageCircle size={20} className="text-gray-900" />
                  </div>
                  <div>
                    <h4 className="text-sm text-gray-300 font-semibold mb-1">Email Support</h4>
