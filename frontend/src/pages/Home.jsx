@@ -8,6 +8,35 @@ const Home = () => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [activeView, setActiveView] = useState('default');
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      title: t('empowering') || 'Empowering Tribal Students',
+      desc: t('lifelong') || 'Facilitating lifelong learning through seamless scholarship access.',
+      img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070'
+    },
+    {
+      title: 'Direct Benefit Transfer (DBT)',
+      desc: 'Seamless, transparent, and direct scholarship disbursement to Aadhaar-linked accounts.',
+      img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=2070'
+    },
+    {
+      title: 'AI-Powered Verification',
+      desc: 'Instant, accurate, and secure document validation using advanced machine learning.',
+      img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=2070'
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <div className="w-full bg-white min-h-screen relative overflow-x-hidden font-sans">
@@ -15,15 +44,39 @@ const Home = () => {
       {/* NSP Style Hero Carousel */}
       <div className="relative w-full h-[320px] bg-gradient-to-r from-blue-50 via-white to-indigo-50 overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent bg-[length:20px_20px]"></div>
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=2070" alt="Students" className="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-multiply" />
         
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-3 tracking-tight drop-shadow-sm">{t('empowering')}</h1>
-          <p className="text-lg md:text-xl text-blue-700 font-medium tracking-wide max-w-2xl mx-auto">{t('lifelong')}</p>
+        {/* Dynamic Slide Background Image */}
+        <img 
+          key={slides[currentSlide].img}
+          src={slides[currentSlide].img} 
+          alt="Slider Background" 
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.12] mix-blend-multiply animate-fade-in transition-all duration-1000" 
+        />
+        
+        {/* Dynamic Slide Content */}
+        <div key={currentSlide} className="relative z-10 text-center px-4 animate-slide-up transition-all duration-700">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-3 tracking-tight drop-shadow-sm">{slides[currentSlide].title}</h1>
+          <p className="text-lg md:text-xl text-blue-700 font-medium tracking-wide max-w-2xl mx-auto">{slides[currentSlide].desc}</p>
         </div>
         
-        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition"><ChevronRight className="rotate-180" size={32}/></button>
-        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition"><ChevronRight size={32}/></button>
+        {/* Navigation Buttons */}
+        <button onClick={prevSlide} className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition z-20 hover:scale-110">
+          <ChevronRight className="rotate-180" size={32}/>
+        </button>
+        <button onClick={nextSlide} className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-50 hover:bg-white p-3 rounded-full text-blue-600 shadow-sm transition z-20 hover:scale-110">
+          <ChevronRight size={32}/>
+        </button>
+        
+        {/* Slide Indicators */}
+        <div className="absolute bottom-4 flex space-x-2 z-20">
+          {slides.map((_, index) => (
+            <button 
+              key={index} 
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-blue-600 w-6' : 'bg-blue-300 hover:bg-blue-400'}`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* NSP Style Latest Updates Marquee */}
