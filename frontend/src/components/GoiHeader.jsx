@@ -105,14 +105,14 @@ const GoiHeader = () => {
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
                   <li onClick={() => handleNavigation('/register')} className="cursor-pointer hover:text-blue-600">Apply For One Time Registration (OTR)</li>
                   <li onClick={() => handleNavigation('/login?role=STUDENT')} className="cursor-pointer hover:text-blue-600">Apply For Scholarship</li>
-                  <li className="cursor-pointer hover:text-blue-600">Schemes on NSP</li>
+                  <li className="cursor-pointer hover:text-blue-600">Schemes on ScholarCore</li>
                   <li className="cursor-pointer hover:text-blue-600">Scholarship Eligibility</li>
                   <li className="cursor-pointer hover:text-blue-600">Application Status</li>
                   <li className="cursor-pointer hover:text-blue-600">Track Your Payment</li>
                   <li className="cursor-pointer hover:text-blue-600">Aadhaar Seva Kendra</li>
                   <li className="cursor-pointer hover:text-blue-600">Check Aadhaar Seeding Status</li>
                   <li className="cursor-pointer hover:opacity-80 mt-2">
-                    <div className="flex items-center text-[#f06d86] font-bold text-sm mb-1">NSP OTR APP</div>
+                    <div className="flex items-center text-[#f06d86] font-bold text-sm mb-1">ScholarCore OTR APP</div>
                     <div className="bg-black text-white text-xs flex items-center w-max px-3 py-1.5 rounded">
                       <Play size={14} className="mr-2 text-green-400 fill-current" /> 
                       <div><div className="text-[8px] uppercase">Get it on</div><div className="font-bold text-sm">Google Play</div></div>
@@ -163,11 +163,11 @@ const GoiHeader = () => {
                 </div>
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
                   <li className="cursor-pointer hover:text-blue-600">Dashboard</li>
-                  <li className="cursor-pointer hover:text-blue-600">Find Institutes on NSP</li>
+                  <li className="cursor-pointer hover:text-blue-600">Find Institutes on ScholarCore</li>
                   <li className="cursor-pointer hover:text-blue-600">List of Applicants Processed for Scholarships</li>
                   <li className="cursor-pointer hover:text-blue-600">Nodal Officers (Scheme-wise)</li>
                   <li className="cursor-pointer hover:text-blue-600">Nodal Officers (District-wise)</li>
-                  <li className="cursor-pointer hover:text-blue-600">NSP Helpdesk</li>
+                  <li className="cursor-pointer hover:text-blue-600">ScholarCore Helpdesk</li>
                   <li className="cursor-pointer hover:text-blue-600">PFMS Helpdesk</li>
                   <li className="cursor-pointer hover:text-blue-600">Grievance Registration</li>
                   <li className="cursor-pointer hover:text-blue-600">CSC Login</li>
@@ -179,7 +179,7 @@ const GoiHeader = () => {
             {/* Footer Links */}
             <div className="bg-[#eeeeee] p-6 mt-4">
               <ul className="space-y-4 text-[15px] text-gray-700">
-                <li className="cursor-pointer hover:text-blue-600">About NSP</li>
+                <li className="cursor-pointer hover:text-blue-600">About ScholarCore</li>
                 <li className="cursor-pointer hover:text-blue-600">Contact us</li>
                 <li className="cursor-pointer hover:text-blue-600">Site map</li>
               </ul>

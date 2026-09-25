@@ -197,7 +197,7 @@ const Home = () => {
                 <p className="text-[15px] text-[#2F6955] font-medium leading-relaxed">Renewal applications for the MoTA National Overseas Scholarship (Merit Based Scheme) are now open for the upcoming cohort.</p>
               </div>
               <div className="border-b border-dashed border-gray-300 pb-4">
-                <p className="text-[15px] text-[#2F6955] font-medium leading-relaxed">All disabled students must first login in the UDID portal and provide consent to share their UDID details and then submit application in NSP.</p>
+                <p className="text-[15px] text-[#2F6955] font-medium leading-relaxed">All disabled students must first login in the UDID portal and provide consent to share their UDID details and then submit application in ScholarCore.</p>
               </div>
               <Link to="#" className="text-[#1E5642] font-bold text-sm inline-block mt-2 hover:underline">View more</Link>
             </div>
@@ -254,7 +254,7 @@ const Home = () => {
                  </div>
                  <div className="border-2 border-black rounded flex flex-col items-center bg-white p-1">
                     <QrCode size={40} className="text-black" />
-                    <span className="text-[7px] font-bold bg-black text-gray-900 w-full text-center mt-1 uppercase">NSP OTR App</span>
+                    <span className="text-[7px] font-bold bg-black text-gray-900 w-full text-center mt-1 uppercase">ScholarCore OTR App</span>
                  </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">OTR</h3>
@@ -270,7 +270,7 @@ const Home = () => {
               <button onClick={() => navigate('/login?role=STUDENT')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">Login</button>
             </div>
 
-            {/* 4. Schemes on NSP */}
+            {/* 4. Schemes on ScholarCore */}
             <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition border-l-4 border-l-[#1E5642]">
               <FileText size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Schemes on Portal</h3>
@@ -360,7 +360,7 @@ const Home = () => {
             <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition">
               <FileEdit size={56} className="text-[#C85237] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Registration Form</h3>
-              <p className="text-sm text-gray-700 mb-4">New Institutes (not on-boarded on NSP) having valid AISHE/UDISE+/NCVT code can register on NSP.</p>
+              <p className="text-sm text-gray-700 mb-4">New Institutes (not on-boarded on ScholarCore) having valid AISHE/UDISE+/NCVT code can register on ScholarCore.</p>
               <button onClick={() => navigate('/register')} className="text-black font-bold border-b border-black hover:text-[#C85237]">Apply now!</button>
             </div>
 
@@ -451,7 +451,7 @@ const Home = () => {
             <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition">
               <Scale size={56} className="text-[#3B4B61] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Grievance Redressal Officers <span className="text-sm font-normal text-gray-500">(Scheme-wise)</span></h3>
-              <p className="text-sm text-gray-700 mb-4">Find the list of Grievance Redressal Officers(GROs) for Central Sector Schemes on NSP</p>
+              <p className="text-sm text-gray-700 mb-4">Find the list of Grievance Redressal Officers(GROs) for Central Sector Schemes on ScholarCore</p>
               <button onClick={() => window.open('https://scholarships.gov.in/public/faq/GRO_List.pdf', '_blank')} className="text-black font-bold border-b border-black hover:text-[#3B4B61]">Find List</button>
             </div>
 
@@ -474,15 +474,15 @@ const Home = () => {
              <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition">
                 <BarChart3 size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Dashboard</h3>
-                <p className="text-sm text-gray-700 mb-4">Visualization of the statistical data available on NSP regarding the receipt and processing of scholarship applications in schemes onboarded on NSP.</p>
+                <p className="text-sm text-gray-700 mb-4">Visualization of the statistical data available on ScholarCore regarding the receipt and processing of scholarship applications in schemes onboarded on ScholarCore.</p>
                 <button onClick={() => navigate('/admin/analytics')} className="text-black font-bold border-b border-black hover:text-[#187884]">View all</button>
              </div>
 
-             {/* 2. Find Institutes on NSP */}
+             {/* 2. Find Institutes on ScholarCore */}
              <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition">
                 <Search size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Find Institutes on NSP</h3>
-                <p className="text-sm text-gray-700 mb-4">Search Institutes available on NSP</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Find Institutes on ScholarCore</h3>
+                <p className="text-sm text-gray-700 mb-4">Search Institutes available on ScholarCore</p>
                 <button onClick={() => window.open('https://scholarships.gov.in/public/findInstitute', '_blank')} className="text-black font-bold border-b border-black hover:text-[#187884]">Search now!</button>
              </div>
 
@@ -510,11 +510,11 @@ const Home = () => {
                 <button onClick={() => navigate('/applicant/grievances')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
-             {/* 6. NSP Helpdesk */}
+             {/* 6. ScholarCore Helpdesk */}
              <div className="border border-gray-200 rounded-lg p-6 bg-white hover:shadow-lg transition">
                 <Headset size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
-                <h3 className="text-xl font-bold text-gray-900 mb-3">NSP Helpdesk</h3>
-                <p className="text-sm text-gray-700 mb-4">NSP Helpdesk</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">ScholarCore Helpdesk</h3>
+                <p className="text-sm text-gray-700 mb-4">ScholarCore Helpdesk</p>
                 <button onClick={() => document.getElementById('helpdesk')?.scrollIntoView({behavior: 'smooth'})} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
