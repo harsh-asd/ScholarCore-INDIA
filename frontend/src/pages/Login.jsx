@@ -29,11 +29,14 @@ const Login = () => {
     // Simulate Network Request
     setTimeout(() => {
       if (role === 'ADMIN') {
-        if (email.includes('admin') || email.includes('mota')) {
-          localStorage.setItem('userRole', 'ADMIN');
+        if (email.includes('ministry')) {
+          localStorage.setItem('userRole', 'MINISTRY');
+          navigate('/admin');
+        } else if (email.includes('officer') || email.includes('admin')) {
+          localStorage.setItem('userRole', 'OFFICER');
           navigate('/admin');
         } else {
-          setError('Invalid Admin credentials. Use admin@mota.gov.in');
+          setError('Invalid credentials. Use ministry@mota.gov.in or officer@mota.gov.in');
         }
       } else if (role === 'INSTITUTE') {
         if (email.includes('ino') || email.includes('institute')) {
@@ -72,7 +75,7 @@ const Login = () => {
            <h2 className="relative z-10 text-2xl font-extrabold text-white tracking-tight">
              {role === 'STUDENT' && 'Candidate Login'}
              {role === 'INSTITUTE' && 'Institute Nodal Officer'}
-             {role === 'ADMIN' && 'Ministry Admin Login'}
+             {role === 'ADMIN' && 'Ministry / Officer Portal'}
            </h2>
            <p className="relative z-10 text-sm text-green-100 mt-1">Authenticate to access ScholarCore India</p>
          </div>
@@ -89,7 +92,7 @@ const Login = () => {
                  INSTITUTE
                </button>
                <button type="button" onClick={() => setRole('ADMIN')} className={`flex-1 text-xs font-bold py-2 rounded-md transition ${role === 'ADMIN' ? 'bg-white shadow text-[#1E5642]' : 'text-gray-500 hover:text-gray-700'}`}>
-                 MINISTRY
+                 OFFICER / MINISTRY
                </button>
              </div>
            )}
@@ -118,7 +121,7 @@ const Login = () => {
                  type="text" 
                  value={email} 
                  onChange={e=>setEmail(e.target.value)} 
-                 placeholder={role === 'STUDENT' ? 'student@gmail.com' : role === 'INSTITUTE' ? 'ino@institute.edu' : 'admin@mota.gov.in'}
+                 placeholder={role === 'STUDENT' ? 'student@gmail.com' : role === 'INSTITUTE' ? 'ino@institute.edu' : 'officer@mota.gov.in'}
                  className="w-full bg-gray-50 border-gray-300 rounded-lg p-3 text-sm border focus:ring-2 focus:ring-[#1E5642] focus:border-[#1E5642] outline-none transition" 
                />
              </div>
@@ -153,7 +156,12 @@ const Login = () => {
              <ul className="text-xs text-blue-700 space-y-1 font-medium">
                {role === 'STUDENT' && <li><span className="font-bold">Student:</span> student@gmail.com (pwd: any)</li>}
                {role === 'INSTITUTE' && <li><span className="font-bold">Institute:</span> ino@institute.edu (pwd: any)</li>}
-               {role === 'ADMIN' && <li><span className="font-bold">Ministry:</span> admin@mota.gov.in (pwd: any)</li>}
+                              {role === 'ADMIN' && (
+                 <>
+                   <li><span className="font-bold">Ministry Executive:</span> ministry@mota.gov.in</li>
+                   <li><span className="font-bold">Nodal Officer:</span> officer@mota.gov.in</li>
+                 </>
+               )}
              </ul>
            </div>
 
