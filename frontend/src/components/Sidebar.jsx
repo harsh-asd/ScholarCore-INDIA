@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, FileText, UploadCloud, Activity, AlertTriangle, Building2, ShieldCheck, BarChart3, LogOut, CheckSquare, Sliders, Activity } from 'lucide-react';
+import { LayoutDashboard, FileText, UploadCloud, Activity, AlertTriangle, Building2, ShieldCheck, BarChart3, LogOut, CheckSquare, Sliders } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
