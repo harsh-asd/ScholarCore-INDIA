@@ -1,4 +1,5 @@
 import React from 'react';
+import ErrorBoundary from './ErrorBoundary';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import TopBar from './components/TopBar';
 import GoiHeader from './components/GoiHeader';
@@ -34,6 +35,7 @@ function App() {
   return (
     <AccessibilityProvider>
       <LanguageProvider>
+        <ErrorBoundary>
         <Router>
           <div className="min-h-screen bg-[#F4F5F7] font-sans text-gray-900 flex flex-col">
         <TopBar />
@@ -60,6 +62,7 @@ function App() {
         
           </div>
         </Router>
+        </ErrorBoundary>
       </LanguageProvider>
     </AccessibilityProvider>
   );
