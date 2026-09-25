@@ -11,8 +11,15 @@ import {
 } from 'recharts';
 
 const AdminDashboard = () => {
+
+  const safeDecode = (key, fallback) => {
+    const val = localStorage.getItem(key);
+    if (!val) return fallback;
+    try { return atob(val); } catch (e) { return val; }
+  };
+
   const navigate = useNavigate();
-  const userRole = localStorage.getItem('_sch_role') ? atob(localStorage.getItem('_sch_role')) : 'OFFICER'; // 'MINISTRY' or 'OFFICER'
+  const userRole = localStorage.getItem('_sch_role') ? safeDecode('_sch_role', '') : 'OFFICER'; // 'MINISTRY' or 'OFFICER'
   const [activeTab, setActiveTab] = useState('ANALYTICS'); // NEW: Added Analytics tab
 
   // Mock Data for Charts
