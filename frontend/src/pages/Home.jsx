@@ -283,7 +283,7 @@ const Home = () => {
               <ClipboardCheck size={56} className="text-[#1E5642] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Scholarship Eligibility</h3>
               <p className="text-sm text-gray-700 mb-4">Know your eligibility for different scholarship schemes available on the National Scholarship Portal.</p>
-              <button onClick={() => navigate('/applicant/schemes')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">View</button>
+              <button onClick={() => navigate('/public-schemes')} className="text-black font-bold border-b border-black hover:text-[#1E5642]">View</button>
             </div>
 
             {/* 6. Application Status */}
@@ -491,7 +491,7 @@ const Home = () => {
                 <UserCog size={56} className="text-[#187884] mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Nodal Officers <span className="text-sm font-normal text-gray-500">(Scheme-wise)</span></h3>
                 <p className="text-sm text-gray-700 mb-4">Search Scheme-wise Nodal Officers</p>
-                <button onClick={() => navigate('/applicant/schemes')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
+                <button onClick={() => navigate('/public-schemes')} className="text-black font-bold border-b border-black hover:text-[#187884]">View</button>
              </div>
 
              {/* 4. Nodal Officers (District-wise) */}

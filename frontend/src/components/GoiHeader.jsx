@@ -115,7 +115,7 @@ const GoiHeader = () => {
                 <ul className="space-y-4 text-[15px] text-gray-600 pl-9">
                   <li onClick={() => handleNavigation('/register')} className="cursor-pointer hover:text-blue-600">Apply For One Time Registration (OTR)</li>
                   <li onClick={() => handleNavigation('/login?role=STUDENT')} className="cursor-pointer hover:text-blue-600">Apply For Scholarship</li>
-                  <li onClick={() => handleExternalLink('Schemes Repository')} className="cursor-pointer hover:text-blue-600">Schemes on ScholarCore</li>
+                  <li onClick={() => handleNavigation('/public-schemes')} className="cursor-pointer hover:text-blue-600">Schemes on ScholarCore</li>
                   <li onClick={() => handleExternalLink('Eligibility Calculator')} className="cursor-pointer hover:text-blue-600">Scholarship Eligibility</li>
                   <li onClick={() => handleExternalLink('Application Status Tracker')} className="cursor-pointer hover:text-blue-600">Application Status</li>
                   <li onClick={() => handleExternalLink('PFMS Payment Gateway')} className="cursor-pointer hover:text-blue-600">Track Your Payment</li>

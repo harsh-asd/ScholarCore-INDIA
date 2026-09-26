@@ -5,6 +5,8 @@ import TopBar from './components/TopBar';
 import GoiHeader from './components/GoiHeader';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
+import PublicSchemes from './pages/PublicSchemes';
+
 import ApplicantDashboard from './pages/ApplicantDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import OfficerDashboard from './pages/OfficerDashboard';
@@ -44,6 +46,8 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/public-schemes" element={<PublicSchemes />} />
+
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
           <Route path="/application" element={<ApplicationForm />} />
